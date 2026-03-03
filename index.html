@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flock — Family Calendar</title>
+<meta name="description" content="Flock keeps your whole family in sync. Every person, every day, at a glance. Available on Web and iOS.">
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --terracotta: #C4614A;
+    --terracotta-light: #D9806C;
+    --terracotta-pale: #F2DDD8;
+    --cream: #F7F2EA;
+    --cream-dark: #EDE6D8;
+    --sage: #7A9E7E;
+    --sage-light: #A8C4AB;
+    --sage-pale: #E4EDE5;
+    --bark: #3D2B1F;
+    --bark-mid: #6B4C3B;
+    --warm-white: #FDFAF5;
+    --slate: #5C5248;
+    --gold: #C9A84C;
+    --gold-pale: #F5EDD4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--bark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(253, 250, 245, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--cream-dark);
+    padding: 0 48px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--terracotta);
+    letter-spacing: -0.5px;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--slate);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--terracotta); }
+
+  .nav-signin {
+    background: var(--bark);
+    color: var(--cream) !important;
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s !important;
+    display: inline-block;
+  }
+
+  .nav-signin:hover {
+    background: var(--terracotta) !important;
+    color: var(--cream) !important;
+    transform: translateY(-1px);
+  }
+
+  .nav-mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    background: var(--bark);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 68px;
+  }
+
+  .hero-bg-dots {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: radial-gradient(circle at 1px 1px, var(--cream) 1px, transparent 0);
+    background-size: 36px 36px;
+    pointer-events: none;
+  }
+
+  .hero-bg-glow {
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(196,97,74,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 80px 48px 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.0;
+    letter-spacing: -2px;
+    margin-bottom: 28px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--terracotta-light);
+  }
+
+  .hero-body {
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(237, 230, 216, 0.75);
+    line-height: 1.8;
+    max-width: 440px;
+    margin-bottom: 44px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--terracotta);
+    color: var(--cream);
+    padding: 14px 32px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--terracotta-light);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    color: rgba(247,242,234,0.6);
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+
+  .btn-secondary:hover { color: var(--cream); }
+
+  .btn-secondary svg { transition: transform 0.2s; }
+  .btn-secondary:hover svg { transform: translateX(3px); }
+
+  /* Hero mockup */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .phone-mockup {
+    width: 320px;
+    background: var(--cream);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 48px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+    transform: rotate(2deg);
+  }
+
+  .phone-bar {
+    background: var(--warm-white);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .phone-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--terracotta);
+  }
+
+  .phone-month {
+    font-size: 11px;
+    color: var(--slate);
+  }
+
+  .phone-add {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--terracotta);
+  }
+
+  .phone-header {
+    background: var(--warm-white);
+    padding: 10px 20px 8px;
+    display: grid;
+    grid-template-columns: 56px repeat(5, 1fr);
+    gap: 4px;
+  }
+
+  .ph-day {
+    text-align: center;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate);
+    padding: 4px 0;
+  }
+
+  .ph-day.today { color: var(--terracotta); font-weight: 600; }
+
+  .phone-rows {
+    padding: 0 20px 20px;
+    background: var(--warm-white);
+  }
+
+  .ph-row {
+    display: grid;
+    grid-template-columns: 56px repeat(5, 1fr);
+    gap: 4px;
+    padding: 4px 0;
+    border-top: 1px solid var(--cream-dark);
+    align-items: center;
+  }
+
+  .ph-row:first-child { border-top: none; }
+
+  .ph-name {
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--bark-mid);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .ph-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .ph-cell {
+    min-height: 30px;
+    border-radius: 4px;
+    font-size: 7.5px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    padding: 4px 5px;
+    line-height: 1.3;
+  }
+
+  .ph-cell.empty { background: transparent; }
+  .event-t { background: var(--terracotta-pale); color: var(--terracotta); }
+  .event-s { background: var(--sage-pale); color: #4A7A4E; }
+  .event-g { background: var(--gold-pale); color: #8A6A1A; }
+  .event-b { background: #DDE8F0; color: #3A6080; }
+  .event-k { background: #EDE0D8; color: var(--bark); }
+
+  /* ─── TAGLINE STRIP ─── */
+  .tagline-strip {
+    background: var(--terracotta);
+    padding: 28px 48px;
+    text-align: center;
+  }
+
+  .tagline-strip p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: -0.3px;
+  }
+
+  /* ─── SECTIONS SHARED ─── */
+  section { padding: 100px 0; }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .section-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--terracotta);
+    margin-bottom: 32px;
+  }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    color: var(--bark);
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--slate);
+    max-width: 520px;
+  }
+
+  /* ─── WHAT IS FLOCK ─── */
+  #what { background: var(--cream); }
+
+  .what-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .what-body {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--bark-mid);
+    margin-bottom: 20px;
+  }
+
+  .what-visual {
+    background: var(--bark);
+    border-radius: 16px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 24px 60px rgba(61,43,31,0.2);
+  }
+
+  .what-stat {
+    background: rgba(247,242,234,0.06);
+    border: 1px solid rgba(247,242,234,0.1);
+    border-radius: 10px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .what-stat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--terracotta);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .what-stat-label {
+    font-size: 12px;
+    color: rgba(247,242,234,0.45);
+    margin-bottom: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  .what-stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--cream);
+  }
+
+  /* ─── FEATURES ─── */
+  #features { background: var(--warm-white); }
+
+  .features-intro {
+    max-width: 600px;
+    margin-bottom: 64px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .feature-card {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 36px 32px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(61,43,31,0.1);
+  }
+
+  .feature-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: var(--terracotta-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .feature-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--bark);
+    margin-bottom: 12px;
+  }
+
+  .feature-body {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--slate);
+  }
+
+  /* ─── HOW IT WORKS ─── */
+  #how { background: var(--cream); }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    margin-top: 64px;
+    position: relative;
+  }
+
+  .how-grid::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: calc(16.66% + 24px);
+    right: calc(16.66% + 24px);
+    height: 1px;
+    background: var(--cream-dark);
+    z-index: 0;
+  }
+
+  .how-step {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .how-number {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--bark);
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+  }
+
+  .how-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--bark);
+    margin-bottom: 12px;
+  }
+
+  .how-body {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--slate);
+  }
+
+  /* ─── MATRIX PREVIEW ─── */
+  #preview { background: var(--bark); }
+
+  #preview .section-label { color: var(--terracotta-light); }
+
+  .preview-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+
+  .preview-sub {
+    font-size: 15px;
+    color: rgba(237, 230, 216, 0.55);
+    line-height: 1.7;
+    max-width: 500px;
+    margin-bottom: 52px;
+  }
+
+  .desk-mockup {
+    background: var(--cream);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+  }
+
+  .desk-bar {
+    background: var(--warm-white);
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .desk-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--terracotta);
+  }
+
+  .desk-month { font-size: 13px; color: var(--slate); }
+
+  .desk-add {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--terracotta);
+    letter-spacing: 0.05em;
+    cursor: pointer;
+  }
+
+  .desk-cal-header {
+    background: var(--warm-white);
+    padding: 12px 28px 8px;
+    display: grid;
+    grid-template-columns: 96px repeat(7, 1fr);
+    gap: 8px;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .dc-label {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+    padding: 4px 0;
+  }
+
+  .dc-label.today { color: var(--terracotta); font-weight: 600; }
+
+  .desk-rows { padding: 8px 28px 28px; background: var(--warm-white); }
+
+  .dc-row {
+    display: grid;
+    grid-template-columns: 96px repeat(7, 1fr);
+    gap: 8px;
+    padding: 5px 0;
+    border-top: 1px solid var(--cream-dark);
+    align-items: center;
+  }
+
+  .dc-row:first-child { border-top: none; }
+
+  .dc-name {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--bark-mid);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .dc-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dc-cell {
+    min-height: 36px;
+    border-radius: 6px;
+    font-size: 9px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    padding: 5px 7px;
+    line-height: 1.3;
+  }
+
+  .dc-cell.empty { background: transparent; }
+  .dc-t { background: var(--terracotta-pale); color: var(--terracotta); }
+  .dc-s { background: var(--sage-pale); color: #4A7A4E; }
+  .dc-g { background: var(--gold-pale); color: #8A6A1A; }
+  .dc-b { background: #DDE8F0; color: #3A6080; }
+  .dc-k { background: #EDE0D8; color: var(--bark); }
+
+  /* ─── PILLARS ─── */
+  #pillars { background: var(--warm-white); }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 64px;
+  }
+
+  .pillar-card {
+    padding: 36px 28px;
+    background: var(--cream);
+    border-radius: 12px;
+    border-top: 3px solid var(--terracotta);
+  }
+
+  .pillar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--bark);
+    margin-bottom: 12px;
+  }
+
+  .pillar-body {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--slate);
+  }
+
+  /* ─── PLATFORMS ─── */
+  #platforms { background: var(--cream); }
+
+  .platforms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .platform-card {
+    background: var(--warm-white);
+    border-radius: 12px;
+    padding: 40px;
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+  }
+
+  .platform-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--bark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+
+  .platform-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--bark);
+    margin-bottom: 10px;
+  }
+
+  .platform-body {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--slate);
+    margin-bottom: 20px;
+  }
+
+  .platform-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--terracotta);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s;
+  }
+
+  .platform-link:hover { gap: 10px; }
+
+  /* ─── CTA ─── */
+  #cta {
+    background: var(--bark);
+    text-align: center;
+    padding: 120px 48px;
+  }
+
+  .cta-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .cta-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+
+  .cta-heading em {
+    font-style: italic;
+    color: var(--terracotta-light);
+  }
+
+  .cta-sub {
+    font-size: 16px;
+    color: rgba(237, 230, 216, 0.55);
+    max-width: 440px;
+    margin: 0 auto 44px;
+    line-height: 1.7;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-light {
+    background: var(--cream);
+    color: var(--bark);
+    padding: 14px 32px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-light:hover {
+    background: var(--warm-white);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: rgba(247,242,234,0.6);
+    padding: 14px 32px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    border: 1px solid rgba(247,242,234,0.2);
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+
+  .btn-outline:hover {
+    border-color: rgba(247,242,234,0.5);
+    color: var(--cream);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #2A1D14;
+    padding: 56px 48px;
+  }
+
+  .footer-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: -0.5px;
+  }
+
+  .footer-tagline {
+    font-size: 12px;
+    color: rgba(247,242,234,0.3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: rgba(247,242,234,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--cream); }
+
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(247,242,234,0.2);
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: var(--warm-white);
+      padding: 24px;
+      border-bottom: 1px solid var(--cream-dark);
+      gap: 20px;
+      z-index: 99;
+    }
+
+    .nav-mobile-toggle { display: flex; }
+
+    .hero-inner {
+      grid-template-columns: 1fr;
+      padding: 60px 24px 80px;
+      gap: 48px;
+      text-align: center;
+    }
+
+    .hero-body { margin: 0 auto 44px; }
+    .hero-ctas { justify-content: center; }
+    .phone-mockup { width: 280px; margin: 0 auto; transform: none; }
+
+    .what-grid,
+    .platforms-grid { grid-template-columns: 1fr; gap: 40px; }
+
+    .features-grid { grid-template-columns: 1fr 1fr; }
+
+    .how-grid { grid-template-columns: 1fr; gap: 40px; }
+    .how-grid::before { display: none; }
+
+    .pillars-grid { grid-template-columns: 1fr 1fr; }
+
+    .container { padding: 0 24px; }
+    section { padding: 72px 0; }
+
+    .desk-cal-header,
+    .desk-rows .dc-row { grid-template-columns: 72px repeat(5, 1fr); }
+
+    /* Hide last 2 day columns on mobile */
+    .dc-col-6, .dc-col-7 { display: none; }
+
+    .footer-inner { flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+
+  @media (max-width: 580px) {
+    .features-grid,
+    .pillars-grid { grid-template-columns: 1fr; }
+    #cta { padding: 80px 24px; }
+    .tagline-strip { padding: 24px; }
+  }
+
+  /* ─── TEASER OVERLAY ─── */
+  #teaser {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--bark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  #teaser.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.015);
+  }
+  .teaser-bg-dots {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: radial-gradient(circle at 1px 1px, var(--cream) 1px, transparent 0);
+    background-size: 36px 36px;
+    pointer-events: none;
+  }
+  .teaser-glow {
+    position: absolute;
+    bottom: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(196,97,74,0.14) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .teaser-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 48px 32px;
+    max-width: 560px;
+    width: 100%;
+  }
+  .teaser-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: -3px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .teaser-sub-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(247,242,234,0.3);
+    margin-bottom: 44px;
+  }
+  .teaser-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--terracotta);
+    margin: 0 auto 36px;
+  }
+  .teaser-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .teaser-headline em {
+    font-style: italic;
+    color: var(--terracotta-light);
+  }
+  .teaser-body {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(237,230,216,0.55);
+    line-height: 1.8;
+    margin: 0 auto 44px;
+    max-width: 400px;
+  }
+  .teaser-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .teaser-signin {
+    background: var(--cream);
+    color: var(--bark);
+    padding: 13px 30px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .teaser-signin:hover {
+    background: var(--warm-white);
+    transform: translateY(-2px);
+  }
+  .teaser-info-btn {
+    background: transparent;
+    color: rgba(247,242,234,0.6);
+    padding: 13px 30px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 400;
+    border: 1px solid rgba(247,242,234,0.2);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .teaser-info-btn:hover {
+    border-color: rgba(247,242,234,0.45);
+    color: var(--cream);
+  }
+  .teaser-peek {
+    font-size: 11px;
+    color: rgba(247,242,234,0.18);
+    cursor: pointer;
+    transition: color 0.2s;
+    background: none;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.06em;
+  }
+  .teaser-peek:hover { color: rgba(247,242,234,0.38); }
+
+  /* ─── INFO MODAL ─── */
+  #infoModal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(61,43,31,0.72);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  #infoModal.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .modal-box {
+    background: var(--warm-white);
+    border-radius: 16px;
+    padding: 48px;
+    max-width: 460px;
+    width: 100%;
+    position: relative;
+    transform: translateY(24px);
+    transition: transform 0.35s ease;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.35);
+  }
+  #infoModal.open .modal-box { transform: translateY(0); }
+  .modal-close {
+    position: absolute;
+    top: 18px; right: 18px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--slate);
+    font-size: 18px;
+    line-height: 1;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: var(--cream-dark); }
+  .modal-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--terracotta);
+    margin-bottom: 8px;
+  }
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--bark);
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+  }
+  .modal-desc {
+    font-size: 14px;
+    color: var(--slate);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .modal-field { margin-bottom: 14px; }
+  .modal-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .modal-input, .modal-select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--cream-dark);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--bark);
+    background: var(--cream);
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+  .modal-input:focus, .modal-select:focus { border-color: var(--terracotta); }
+  .modal-input::placeholder { color: var(--slate); opacity: 0.5; }
+  .modal-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--terracotta);
+    color: var(--cream);
+    border: none;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .modal-submit:hover {
+    background: var(--terracotta-light);
+    transform: translateY(-1px);
+  }
+  .modal-form-inner {}
+  .modal-success {
+    display: none;
+    text-align: center;
+    padding: 16px 0;
+  }
+  .modal-success-icon { font-size: 48px; margin-bottom: 16px; }
+  .modal-success-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--bark);
+    margin-bottom: 10px;
+  }
+  .modal-success-body {
+    font-size: 14px;
+    color: var(--slate);
+    line-height: 1.7;
+  }
+  @media (max-width: 580px) {
+    .teaser-logo { font-size: 56px; }
+    .teaser-actions { flex-direction: column; align-items: center; }
+    .teaser-signin, .teaser-info-btn { width: 100%; max-width: 300px; text-align: center; }
+    .modal-box { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+
+<!-- ─── TEASER OVERLAY ─── -->
+<div id="teaser">
+  <div class="teaser-bg-dots"></div>
+  <div class="teaser-glow"></div>
+  <div class="teaser-inner">
+
+    <div class="teaser-logo">flock</div>
+    <div class="teaser-sub-label">Family Calendar</div>
+    <div class="teaser-divider"></div>
+
+    <h1 class="teaser-headline">Something <em>good</em> is coming<br>for your family.</h1>
+    <p class="teaser-body">Flock is a family calendar that keeps everyone in sync — every person, every day, at a glance. We're putting the finishing touches on it now.</p>
+
+    <div class="teaser-actions">
+      <a href="https://app.flockfamily.app" class="teaser-signin">Sign In</a>
+      <button class="teaser-info-btn" id="openModal">Get Early Access</button>
+    </div>
+
+    <button class="teaser-peek" id="peekBtn">already have access? preview the site &rarr;</button>
+  </div>
+</div>
+
+<!-- ─── REQUEST INFO MODAL ─── -->
+<div id="infoModal">
+  <div class="modal-box">
+    <button class="modal-close" id="closeModal">&#x2715;</button>
+    <div class="modal-logo">flock</div>
+    <h2 class="modal-title">Stay in the loop.</h2>
+    <p class="modal-desc">Leave your details and we'll reach out when Flock is ready. Early access spots are limited.</p>
+
+    <div class="modal-form-inner" id="modalFormInner">
+      <div class="modal-field">
+        <label class="modal-label" for="modal-name">Your Name</label>
+        <input class="modal-input" type="text" id="modal-name" placeholder="First name">
+      </div>
+      <div class="modal-field">
+        <label class="modal-label" for="modal-email">Email Address</label>
+        <input class="modal-input" type="email" id="modal-email" placeholder="you@example.com">
+      </div>
+      <div class="modal-field">
+        <label class="modal-label" for="modal-family">Family Size</label>
+        <select class="modal-select" id="modal-family">
+          <option value="" disabled selected>How many people in your household?</option>
+          <option value="2">2 people</option>
+          <option value="3">3 people</option>
+          <option value="4">4 people</option>
+          <option value="5">5 people</option>
+          <option value="6+">6 or more</option>
+        </select>
+      </div>
+      <button class="modal-submit" id="modalSubmit">Request Early Access</button>
+    </div>
+
+    <div class="modal-success" id="modalSuccess">
+      <div class="modal-success-icon">🐦</div>
+      <div class="modal-success-title">You're on the list.</div>
+      <p class="modal-success-body">We'll be in touch at <strong id="successEmail"></strong> when Flock is ready for your family. Thanks for your interest.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="#hero" class="nav-logo">flock</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#what">About</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#platforms">Get the App</a></li>
+    <li><a href="https://app.flockfamily.app" class="nav-signin">Sign In</a></li>
+  </ul>
+  <button class="nav-mobile-toggle" id="menuToggle" aria-label="Menu">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <rect y="4" width="22" height="2" rx="1" fill="#3D2B1F"/>
+      <rect y="10" width="22" height="2" rx="1" fill="#3D2B1F"/>
+      <rect y="16" width="22" height="2" rx="1" fill="#3D2B1F"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-bg-dots"></div>
+  <div class="hero-bg-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="hero-eyebrow">Family Calendar — Web & iOS</span>
+      <h1 class="hero-title">Everyone, <em>everywhere,</em> always.</h1>
+      <p class="hero-body">Flock is the family calendar that shows every person's schedule at once — no tab-switching, no missed pickups, no "I didn't know about that." Just your whole family, in sync.</p>
+      <div class="hero-ctas">
+        <a href="https://app.flockfamily.app" class="btn-primary">Get Started</a>
+        <a href="#how" class="btn-secondary">
+          See how it works
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone-mockup">
+        <div class="phone-bar">
+          <span class="phone-logo">flock</span>
+          <span class="phone-month">March 2026</span>
+          <span class="phone-add">+ Add</span>
+        </div>
+        <div class="phone-header">
+          <div></div>
+          <div class="ph-day">Mon</div>
+          <div class="ph-day today">Tue</div>
+          <div class="ph-day">Wed</div>
+          <div class="ph-day">Thu</div>
+          <div class="ph-day">Fri</div>
+        </div>
+        <div class="phone-rows">
+          <div class="ph-row">
+            <div class="ph-name"><span class="ph-dot" style="background:#C4614A;"></span>Allison</div>
+            <div class="ph-cell empty"></div>
+            <div class="ph-cell event-t">Yoga 7am</div>
+            <div class="ph-cell event-t">Team mtg</div>
+            <div class="ph-cell empty"></div>
+            <div class="ph-cell event-t">Dentist</div>
+          </div>
+          <div class="ph-row">
+            <div class="ph-name"><span class="ph-dot" style="background:#7A9E7E;"></span>Mike</div>
+            <div class="ph-cell event-s">Investor</div>
+            <div class="ph-cell event-s">Sync</div>
+            <div class="ph-cell empty"></div>
+            <div class="ph-cell event-s">Board</div>
+            <div class="ph-cell empty"></div>
+          </div>
+          <div class="ph-row">
+            <div class="ph-name"><span class="ph-dot" style="background:#C9A84C;"></span>Michael</div>
+            <div class="ph-cell empty"></div>
+            <div class="ph-cell empty"></div>
+            <div class="ph-cell event-g">Soccer</div>
+            <div class="ph-cell empty"></div>
+            <div class="ph-cell event-g">Soccer</div>
+          </div>
+          <div class="ph-row">
+            <div class="ph-name"><span class="ph-dot" style="background:#8AABBC;"></span>Sawyer</div>
+            <div class="ph-cell empty"></div>
+            <div class="ph-cell event-b">Piano</div>
+            <div class="ph-cell empty"></div>
+            <div class="ph-cell event-b">Piano</div>
+            <div class="ph-cell empty"></div>
+          </div>
+          <div class="ph-row">
+            <div class="ph-name"><span class="ph-dot" style="background:#B08580;"></span>Oliver</div>
+            <div class="ph-cell empty"></div>
+            <div class="ph-cell empty"></div>
+            <div class="ph-cell event-k">Art</div>
+            <div class="ph-cell empty"></div>
+            <div class="ph-cell event-k">Art</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TAGLINE STRIP ─── -->
+<div class="tagline-strip">
+  <p>"Warm as a kitchen table. Sharp as a well-run household."</p>
+</div>
+
+<!-- ─── WHAT IS FLOCK ─── -->
+<section id="what">
+  <div class="container">
+    <div class="what-grid">
+      <div class="reveal">
+        <span class="section-label">What is Flock</span>
+        <div class="section-divider"></div>
+        <h2 class="section-heading">The calendar your whole family will actually use.</h2>
+        <p class="what-body">Most calendar apps are built for one person. Flock is built for a family. Our signature matrix view puts every member's week side by side — so you can see who's doing what, when, and whether it all fits together.</p>
+        <p class="what-body">No more five different apps. No more group texts trying to coordinate pickups. No more "wait, you didn't tell me about that." Just one clear view of your family's life.</p>
+      </div>
+      <div class="what-visual reveal">
+        <div class="what-stat">
+          <div class="what-stat-icon">🗓</div>
+          <div>
+            <div class="what-stat-label">The view that changes everything</div>
+            <div class="what-stat-value">Every person. Every day. One screen.</div>
+          </div>
+        </div>
+        <div class="what-stat">
+          <div class="what-stat-icon">🔔</div>
+          <div>
+            <div class="what-stat-label">Smart reminders</div>
+            <div class="what-stat-value">The right person gets the right nudge.</div>
+          </div>
+        </div>
+        <div class="what-stat">
+          <div class="what-stat-icon">🏠</div>
+          <div>
+            <div class="what-stat-label">More than schedules</div>
+            <div class="what-stat-value">Track dinner plans, chores, and more.</div>
+          </div>
+        </div>
+        <div class="what-stat">
+          <div class="what-stat-icon">📱</div>
+          <div>
+            <div class="what-stat-label">Available everywhere</div>
+            <div class="what-stat-value">Web, iPhone, and wall-mounted iPad.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ─── -->
+<section id="features">
+  <div class="container">
+    <div class="features-intro reveal">
+      <span class="section-label">Features</span>
+      <div class="section-divider"></div>
+      <h2 class="section-heading">Built for how families actually live.</h2>
+      <p class="section-sub">Every feature in Flock is designed for the whole family — not just the person managing the calendar.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">🗂</div>
+        <div class="feature-title">The Matrix View</div>
+        <p class="feature-body">Flock's signature layout shows every family member's week in a single grid. See everyone's schedule side by side — spot conflicts before they happen.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🎨</div>
+        <div class="feature-title">Color-Coded Members</div>
+        <p class="feature-body">Each person gets their own color. At a glance you know whose event is whose — no squinting, no confusion. The calendar learns your family.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🔔</div>
+        <div class="feature-title">Smart Reminders</div>
+        <p class="feature-body">Flock sends reminders to the right person at the right time. Calm, plain-language notifications — no noise, no exclamation marks.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🏡</div>
+        <div class="feature-title">Shared Rows</div>
+        <p class="feature-body">Add shared rows for things the whole family needs to see: dinner plans, who's driving, grocery days, or your vacation rental schedule.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">📺</div>
+        <div class="feature-title">Wall Display Mode</div>
+        <p class="feature-body">Mount an iPad in your kitchen and Flock becomes a beautiful always-on family command center. Dark mode optimized. No interaction needed.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Fast Event Adding</div>
+        <p class="feature-body">Add an event in seconds — just tap a day and start typing. No forms, no friction. Flock gets out of your way so you can get on with your day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section id="how">
+  <div class="container">
+    <div class="reveal" style="max-width: 520px;">
+      <span class="section-label">How It Works</span>
+      <div class="section-divider"></div>
+      <h2 class="section-heading">Up and running in minutes.</h2>
+      <p class="section-sub">Flock is designed to be simple to set up and even simpler to use every day.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-step reveal">
+        <div class="how-number">1</div>
+        <h3 class="how-title">Create your flock</h3>
+        <p class="how-body">Sign up and add your family members. Give each person a name and a color. That's it — your flock is ready.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-number">2</div>
+        <h3 class="how-title">Add your schedule</h3>
+        <p class="how-body">Start adding events for each person. Import from existing calendars or start fresh. Flock works however your family works.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-number">3</div>
+        <h3 class="how-title">Stay in sync</h3>
+        <p class="how-body">Everyone sees the same view. Changes update in real time. Your family always knows what's happening — without anyone having to ask.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FULL CALENDAR PREVIEW ─── -->
+<section id="preview">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">The Matrix View</span>
+      <div class="section-divider" style="background: var(--terracotta);"></div>
+      <h2 class="preview-heading">Your whole week, at a glance.</h2>
+      <p class="preview-sub">Every person. Every day. One view. This is what a well-organized family week looks like in Flock.</p>
+    </div>
+    <div class="desk-mockup reveal">
+      <div class="desk-bar">
+        <span class="desk-logo">flock</span>
+        <span class="desk-month">March 2026</span>
+        <span class="desk-add">+ Add Event</span>
+      </div>
+      <div class="desk-cal-header">
+        <div></div>
+        <div class="dc-label">Mon<br><strong style="font-size:13px;color:var(--bark);">3</strong></div>
+        <div class="dc-label today">Tue<br><strong style="font-size:13px;">4</strong></div>
+        <div class="dc-label">Wed<br><strong style="font-size:13px;color:var(--bark);">5</strong></div>
+        <div class="dc-label">Thu<br><strong style="font-size:13px;color:var(--bark);">6</strong></div>
+        <div class="dc-label">Fri<br><strong style="font-size:13px;color:var(--bark);">7</strong></div>
+        <div class="dc-label">Sat<br><strong style="font-size:13px;color:var(--bark);">8</strong></div>
+        <div class="dc-label">Sun<br><strong style="font-size:13px;color:var(--bark);">9</strong></div>
+      </div>
+      <div class="desk-rows">
+        <div class="dc-row">
+          <div class="dc-name"><span class="dc-dot" style="background:#C4614A;"></span>Allison</div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell dc-t">Yoga 7am</div>
+          <div class="dc-cell dc-t">Team mtg</div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell dc-t">Dentist 2pm</div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell empty"></div>
+        </div>
+        <div class="dc-row">
+          <div class="dc-name"><span class="dc-dot" style="background:#7A9E7E;"></span>Mike</div>
+          <div class="dc-cell dc-s">Investor call</div>
+          <div class="dc-cell dc-s">Ovii sync</div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell dc-s">Board prep</div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell dc-s">Ski day ⛷</div>
+          <div class="dc-cell empty"></div>
+        </div>
+        <div class="dc-row">
+          <div class="dc-name"><span class="dc-dot" style="background:#C9A84C;"></span>Michael</div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell dc-g">Soccer 4pm</div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell dc-g">Soccer 4pm</div>
+          <div class="dc-cell dc-g">Game day!</div>
+          <div class="dc-cell empty"></div>
+        </div>
+        <div class="dc-row">
+          <div class="dc-name"><span class="dc-dot" style="background:#8AABBC;"></span>Sawyer</div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell dc-b">Piano 3:30</div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell dc-b">Piano 3:30</div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell dc-b">Birthday 🎂</div>
+        </div>
+        <div class="dc-row">
+          <div class="dc-name"><span class="dc-dot" style="background:#B08580;"></span>Oliver</div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell dc-k">Art class</div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell dc-k">Art class</div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell empty"></div>
+        </div>
+        <div class="dc-row">
+          <div class="dc-name" style="color:var(--slate);font-style:italic;"><span class="dc-dot" style="background:var(--gold-pale);"></span>Dinner</div>
+          <div class="dc-cell" style="background:var(--gold-pale);color:#8A6A1A;font-size:9px;">Pasta night</div>
+          <div class="dc-cell" style="background:var(--gold-pale);color:#8A6A1A;font-size:9px;">Tacos</div>
+          <div class="dc-cell" style="background:var(--gold-pale);color:#8A6A1A;font-size:9px;">Takeout</div>
+          <div class="dc-cell" style="background:var(--gold-pale);color:#8A6A1A;font-size:9px;">Soup</div>
+          <div class="dc-cell" style="background:var(--gold-pale);color:#8A6A1A;font-size:9px;">Pizza</div>
+          <div class="dc-cell empty"></div>
+          <div class="dc-cell empty"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PILLARS ─── -->
+<section id="pillars">
+  <div class="container">
+    <div class="reveal" style="max-width: 540px;">
+      <span class="section-label">What We Believe</span>
+      <div class="section-divider"></div>
+      <h2 class="section-heading">Built on four principles.</h2>
+      <p class="section-sub">These aren't marketing words. They're decisions that shape every feature, every screen, and every sentence in Flock.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card reveal">
+        <div class="pillar-title">Together</div>
+        <p class="pillar-body">Every feature is designed for the whole family, not just the person managing it. Flock only works when everyone can see it.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="pillar-title">Honest</div>
+        <p class="pillar-body">No clutter, no noise. Just what your family needs to see. We remove complexity rather than adding features for the sake of it.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="pillar-title">Warm</div>
+        <p class="pillar-body">Technology that feels human. Interfaces that feel like home. Flock should feel like the most organized person in your family.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="pillar-title">Calm</div>
+        <p class="pillar-body">Family life has enough urgency. Flock brings it down a notch. Organized without being clinical. Clear without being cold.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PLATFORMS ─── -->
+<section id="platforms">
+  <div class="container">
+    <div class="reveal" style="max-width: 540px;">
+      <span class="section-label">Get the App</span>
+      <div class="section-divider"></div>
+      <h2 class="section-heading">Available on every screen.</h2>
+      <p class="section-sub">From your phone to the kitchen wall, Flock keeps your family in sync wherever you are.</p>
+    </div>
+    <div class="platforms-grid">
+      <div class="platform-card reveal">
+        <div class="platform-icon">🌐</div>
+        <div>
+          <h3 class="platform-title">Web App</h3>
+          <p class="platform-body">Access Flock from any browser. No download required. The full matrix view, on any screen, any time.</p>
+          <a href="https://app.flockfamily.app" class="platform-link">
+            Open the web app
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="platform-card reveal">
+        <div class="platform-icon">📱</div>
+        <div>
+          <h3 class="platform-title">iPhone App</h3>
+          <p class="platform-body">Flock on iOS. Check the family schedule, add events, and get smart reminders — all from your pocket. Rated 4+, built for the whole family.</p>
+          <a href="https://apps.apple.com/app/flock-family-calendar" class="platform-link">
+            Download on the App Store
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="platform-card reveal">
+        <div class="platform-icon">🖼</div>
+        <div>
+          <h3 class="platform-title">iPad Wall Display</h3>
+          <p class="platform-body">Mount an iPad in your kitchen and Flock becomes a beautiful, always-on family command center. Dark mode, large text, zero interaction required.</p>
+          <a href="#how" class="platform-link">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="platform-card reveal">
+        <div class="platform-icon">🔔</div>
+        <div>
+          <h3 class="platform-title">Smart Notifications</h3>
+          <p class="platform-body">Flock sends reminders to the right person at the right time. Calm, plain-language alerts — no noise, no corporate-speak, no pressure.</p>
+          <a href="#features" class="platform-link">
+            See all features
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section id="cta">
+  <span class="cta-eyebrow">Get Started Today</span>
+  <h2 class="cta-heading">Your family, <em>in sync.</em></h2>
+  <p class="cta-sub">Set up your family calendar in minutes. No credit card needed. Just your family and a better way to stay organized.</p>
+  <div class="cta-buttons">
+    <a href="https://app.flockfamily.app" class="btn-light">Get Started</a>
+    <a href="https://apps.apple.com/app/flock-family-calendar" class="btn-outline">Download on iOS</a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">flock</div>
+      <div class="footer-tagline">Everyone, everywhere, always.</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#what">About</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="https://apps.apple.com/app/flock-family-calendar">iOS App</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#1c74797070735c7a70737f777a7d71757065327d6c6c">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 Flock · flockfamily.app</div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Stagger feature/pillar cards
+  document.querySelectorAll('.features-grid, .pillars-grid, .platforms-grid').forEach(grid => {
+    grid.querySelectorAll('.feature-card, .pillar-card, .platform-card').forEach((card, i) => {
+      card.style.transitionDelay = (i * 70) + 'ms';
+    });
+  });
+
+  // Mobile nav
+  const toggle = document.getElementById('menuToggle');
+  const navLinks =
