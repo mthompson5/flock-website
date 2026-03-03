@@ -1264,10 +1264,40 @@
     .teaser-signin, .teaser-info-btn { width: 100%; max-width: 300px; text-align: center; }
     .modal-box { padding: 36px 24px; }
   }
+
+  /* PASSWORD MODAL */
+  #pwModal { position:fixed; inset:0; z-index:10001; background:rgba(61,43,31,0.78); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); display:flex; align-items:center; justify-content:center; padding:24px; opacity:0; pointer-events:none; transition:opacity 0.3s ease; }
+  #pwModal.open { opacity:1; pointer-events:all; }
+  .pw-box { background:var(--warm-white); border-radius:16px; padding:48px; max-width:380px; width:100%; position:relative; transform:translateY(24px); transition:transform 0.35s ease; box-shadow:0 32px 80px rgba(0,0,0,0.4); text-align:center; }
+  #pwModal.open .pw-box { transform:translateY(0); }
+  .pw-close { position:absolute; top:18px; right:18px; width:32px; height:32px; border-radius:50%; background:var(--cream); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--slate); font-size:18px; transition:background 0.2s; }
+  .pw-close:hover { background:var(--cream-dark); }
+  .pw-logo { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--terracotta); margin-bottom:8px; }
+  .pw-title { font-family:'Playfair Display',serif; font-size:22px; font-weight:600; color:var(--bark); margin-bottom:8px; }
+  .pw-desc { font-size:13px; color:var(--slate); line-height:1.6; margin-bottom:24px; }
+  .pw-input { width:100%; padding:14px 16px; border:1px solid var(--cream-dark); border-radius:8px; font-family:'DM Mono',monospace; font-size:18px; font-weight:500; color:var(--bark); background:var(--cream); outline:none; text-align:center; letter-spacing:0.3em; text-transform:uppercase; margin-bottom:10px; transition:border-color 0.2s; }
+  .pw-input:focus { border-color:var(--terracotta); }
+  .pw-input::placeholder { letter-spacing:0.05em; text-transform:none; font-size:13px; font-family:'DM Sans',sans-serif; }
+  .pw-error { font-size:12px; color:var(--terracotta); margin-bottom:12px; display:none; }
+  .pw-submit { width:100%; padding:13px; background:var(--bark); color:var(--cream); border:none; border-radius:100px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:500; cursor:pointer; transition:background 0.2s, transform 0.15s; }
+  .pw-submit:hover { background:var(--terracotta); transform:translateY(-1px); }
 </style>
 </head>
 <body>
 
+
+<!-- PASSWORD MODAL -->
+<div id="pwModal">
+  <div class="pw-box">
+    <button class="pw-close" id="closePwModal">&#x2715;</button>
+    <div class="pw-logo">flock</div>
+    <h2 class="pw-title">Team preview</h2>
+    <p class="pw-desc">Enter your access password to preview the full site.</p>
+    <input class="pw-input" type="password" id="pwInput" placeholder="Enter password" autocomplete="off">
+    <div class="pw-error" id="pwError">Incorrect password. Try again.</div>
+    <button class="pw-submit" id="pwSubmit">Enter</button>
+  </div>
+</div>
 
 <!-- ─── TEASER OVERLAY ─── -->
 <div id="teaser">
@@ -1334,10 +1364,9 @@
 <nav>
   <a href="#hero" class="nav-logo">flock</a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#what">About</a></li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#how">How It Works</a></li>
-    <li><a href="#platforms">Get the App</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/features.html">Features</a></li>
+    <li><a href="/how-it-works.html">How It Works</a></li>
     <li><a href="https://app.flockfamily.app" class="nav-signin">Sign In</a></li>
   </ul>
   <button class="nav-mobile-toggle" id="menuToggle" aria-label="Menu">
@@ -1752,32 +1781,77 @@
       <li><a href="#what">About</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="https://apps.apple.com/app/flock-family-calendar">iOS App</a></li>
-      <li><a href="/cdn-cgi/l/email-protection#1c74797070735c7a70737f777a7d71757065327d6c6c">Contact</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#f9919c959596b99f95969a929f9894909580d7988989">Contact</a></li>
     </ul>
     <div class="footer-copy">© 2026 Flock · flockfamily.app</div>
   </div>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
     });
   }, { threshold: 0.08 });
   reveals.forEach(el => observer.observe(el));
 
-  // Stagger feature/pillar cards
   document.querySelectorAll('.features-grid, .pillars-grid, .platforms-grid').forEach(grid => {
     grid.querySelectorAll('.feature-card, .pillar-card, .platform-card').forEach((card, i) => {
       card.style.transitionDelay = (i * 70) + 'ms';
     });
   });
 
-  // Mobile nav
-  const toggle = document.getElementById('menuToggle');
-  const navLinks =
+  document.getElementById('menuToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  const teaser = document.getElementById('teaser');
+  const infoModal = document.getElementById('infoModal');
+  const pwModal = document.getElementById('pwModal');
+
+  document.getElementById('peekBtn').addEventListener('click', () => {
+    pwModal.classList.add('open');
+    setTimeout(() => document.getElementById('pwInput').focus(), 120);
+  });
+
+  function closePw() {
+    pwModal.classList.remove('open');
+    document.getElementById('pwError').style.display = 'none';
+    document.getElementById('pwInput').value = '';
+  }
+  document.getElementById('closePwModal').addEventListener('click', closePw);
+  pwModal.addEventListener('click', e => { if (e.target === pwModal) closePw(); });
+
+  function checkPassword() {
+    const val = document.getElementById('pwInput').value.trim().toUpperCase();
+    if (val === 'FLOCK') {
+      closePw();
+      teaser.classList.add('hidden');
+      setTimeout(() => { teaser.style.display = 'none'; }, 700);
+    } else {
+      document.getElementById('pwError').style.display = 'block';
+      document.getElementById('pwInput').value = '';
+      document.getElementById('pwInput').focus();
+    }
+  }
+  document.getElementById('pwSubmit').addEventListener('click', checkPassword);
+  document.getElementById('pwInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') checkPassword();
+    if (e.key === 'Escape') closePw();
+  });
+
+  document.getElementById('openModal').addEventListener('click', () => infoModal.classList.add('open'));
+  document.getElementById('closeModal').addEventListener('click', () => infoModal.classList.remove('open'));
+  infoModal.addEventListener('click', e => { if (e.target === infoModal) infoModal.classList.remove('open'); });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { infoModal.classList.remove('open'); closePw(); }
+  });
+
+  document.getElementById('modalSubmit').addEventListener('click', () => {
+    const name = document.getElementById('modal-name').value.trim();
+    const email = document.getElementById('modal-email').value.trim();
+    if (!name || !email) { document.getElementById('modal-email').style.borderColor = '#C4614A'; return; }
+    document.getElementById('successEmail').textContent = email;
+    document.getEl
