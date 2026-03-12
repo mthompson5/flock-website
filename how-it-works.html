@@ -85,6 +85,29 @@
   .sync-status{font-size:10px;color:var(--sage);font-weight:500}
   .sync-arr{color:var(--terra-l);font-size:18px;flex-shrink:0}
 
+  /* ical guide */
+  #ical-guide{background:var(--white)}
+  .ig-intro{font-size:15px;line-height:1.85;color:var(--slate);max-width:600px;margin-top:8px}
+  .ig-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:52px}
+  .ig-card{background:var(--cream);border-radius:12px;padding:32px}
+  .ig-head{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+  .ig-ico{font-size:28px;flex-shrink:0}
+  .ig-name{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:var(--bark)}
+  .ig-use{font-size:11px;color:var(--slate);margin-top:2px;font-weight:400}
+  .ig-steps{list-style:none;padding:0;display:flex;flex-direction:column;gap:10px}
+  .ig-steps li{display:flex;gap:10px;font-size:13.5px;line-height:1.6;color:var(--bark-m)}
+  .ig-steps li .n{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--terra-p);color:var(--terra);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .ig-tip{margin-top:18px;padding:12px 16px;background:var(--white);border-radius:8px;border-left:3px solid var(--terra-p);font-size:12px;color:var(--slate);line-height:1.55}
+  .ig-tip strong{color:var(--bark);font-weight:500}
+  .ig-any{background:var(--bark);border-radius:12px;padding:32px;margin-top:20px;grid-column:1/-1}
+  .ig-any .ig-name{color:var(--cream)}
+  .ig-any .ig-use{color:rgba(247,242,234,.5)}
+  .ig-any .ig-steps li{color:rgba(237,230,216,.8)}
+  .ig-any .ig-steps li .n{background:rgba(196,97,74,.25);color:var(--terra-l)}
+  .ig-any .ig-tip{background:rgba(255,255,255,.06);border-color:rgba(196,97,74,.4);color:rgba(247,242,234,.6)}
+  .ig-any .ig-tip strong{color:var(--cream)}
+  @media(max-width:900px){.ig-grid{grid-template-columns:1fr}}
+
   /* faq */
   #faq{background:var(--white)}
   .faq-grid{display:grid;gap:14px;margin-top:48px}
@@ -314,6 +337,104 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<section id="ical-guide">
+  <div class="container">
+    <div class="reveal">
+      <span class="lbl">iCal Setup Guide</span>
+      <div class="divider"></div>
+      <h2 class="h2">How to find your iCal link.</h2>
+      <p class="ig-intro">Every major calendar app can export a URL that Flock uses to sync your events. Here's exactly where to find it on each platform.</p>
+    </div>
+    <div class="ig-grid">
+
+      <!-- Google Calendar -->
+      <div class="ig-card reveal">
+        <div class="ig-head">
+          <div class="ig-ico">📅</div>
+          <div><div class="ig-name">Google Calendar</div><div class="ig-use">Personal &amp; family calendars</div></div>
+        </div>
+        <ol class="ig-steps">
+          <li><span class="n">1</span><span>Open <strong>calendar.google.com</strong> in a browser.</span></li>
+          <li><span class="n">2</span><span>In the left sidebar, hover over the calendar you want to sync and click the <strong>three dots (⋮)</strong> that appear.</span></li>
+          <li><span class="n">3</span><span>Select <strong>Settings and sharing</strong>.</span></li>
+          <li><span class="n">4</span><span>Scroll down to the <strong>"Integrate calendar"</strong> section.</span></li>
+          <li><span class="n">5</span><span>Copy the <strong>"Secret address in iCal format"</strong> link. (Not the public URL — that only works for public calendars.)</span></li>
+          <li><span class="n">6</span><span>Paste it into Flock's calendar sync field.</span></li>
+        </ol>
+        <div class="ig-tip"><strong>Tip:</strong> Repeat for each family member's Google Calendar. Each person can share their own secret iCal URL with you.</div>
+      </div>
+
+      <!-- Apple Calendar / iCloud -->
+      <div class="ig-card reveal">
+        <div class="ig-head">
+          <div class="ig-ico">🍎</div>
+          <div><div class="ig-name">Apple Calendar</div><div class="ig-use">iCloud calendars on iPhone, iPad &amp; Mac</div></div>
+        </div>
+        <ol class="ig-steps">
+          <li><span class="n">1</span><span>On a Mac, open the <strong>Calendar</strong> app.</span></li>
+          <li><span class="n">2</span><span>Right-click (or Control-click) the calendar you want in the left sidebar.</span></li>
+          <li><span class="n">3</span><span>Select <strong>"Share Calendar…"</strong></span></li>
+          <li><span class="n">4</span><span>Enable <strong>"Public Calendar"</strong> in the sharing sheet.</span></li>
+          <li><span class="n">5</span><span>Click <strong>"Copy Link"</strong> — the URL shown is your iCal feed.</span></li>
+          <li><span class="n">6</span><span>Paste it into Flock. (The link starts with <code style="font-family:'DM Mono',monospace;font-size:11px;background:var(--cream-d);padding:1px 5px;border-radius:3px;">webcal://</code> — Flock handles this automatically.)</span></li>
+        </ol>
+        <div class="ig-tip"><strong>Tip:</strong> You can also get this from iCloud.com → Calendar → click the broadcast icon next to any calendar.</div>
+      </div>
+
+      <!-- Outlook -->
+      <div class="ig-card reveal">
+        <div class="ig-head">
+          <div class="ig-ico">📧</div>
+          <div><div class="ig-name">Outlook &amp; Microsoft 365</div><div class="ig-use">Work, school, and personal Microsoft accounts</div></div>
+        </div>
+        <ol class="ig-steps">
+          <li><span class="n">1</span><span>Go to <strong>outlook.com</strong> and sign in.</span></li>
+          <li><span class="n">2</span><span>Click the <strong>calendar icon</strong> in the left nav to open the calendar view.</span></li>
+          <li><span class="n">3</span><span>Click the <strong>gear icon (⚙)</strong> at the top right → <strong>"View all Outlook settings"</strong>.</span></li>
+          <li><span class="n">4</span><span>Go to <strong>Calendar → Shared calendars</strong>.</span></li>
+          <li><span class="n">5</span><span>Under <strong>"Publish a calendar"</strong>, choose your calendar and set permissions, then click <strong>Publish</strong>.</span></li>
+          <li><span class="n">6</span><span>Copy the <strong>ICS link</strong> and paste it into Flock.</span></li>
+        </ol>
+        <div class="ig-tip"><strong>Note:</strong> Work or school Microsoft 365 accounts may restrict calendar publishing based on IT policy.</div>
+      </div>
+
+      <!-- Airbnb -->
+      <div class="ig-card reveal">
+        <div class="ig-head">
+          <div class="ig-ico">🏠</div>
+          <div><div class="ig-name">Airbnb</div><div class="ig-use">Host availability &amp; booking calendars</div></div>
+        </div>
+        <ol class="ig-steps">
+          <li><span class="n">1</span><span>Log in to your Airbnb host account and go to your <strong>Listings</strong>.</span></li>
+          <li><span class="n">2</span><span>Select the listing you want to sync.</span></li>
+          <li><span class="n">3</span><span>Click <strong>Availability</strong> in the listing editor.</span></li>
+          <li><span class="n">4</span><span>Scroll to <strong>"Connect to another calendar"</strong> or <strong>"Export calendar"</strong>.</span></li>
+          <li><span class="n">5</span><span>Click <strong>"Export Calendar"</strong> — Airbnb shows you a long iCal URL.</span></li>
+          <li><span class="n">6</span><span>Copy that URL and paste it into Flock's calendar sync. Your bookings will appear in your property row.</span></li>
+        </ol>
+        <div class="ig-tip"><strong>Tip:</strong> VRBO hosts — same idea. Go to your listing → Calendar → Export iCal, and paste the URL into Flock.</div>
+      </div>
+
+      <!-- Any other calendar -->
+      <div class="ig-any reveal">
+        <div class="ig-head">
+          <div class="ig-ico">🔗</div>
+          <div><div class="ig-name">Any other calendar or app</div><div class="ig-use">Sports leagues, school apps, TeamSnap, Cozi, Fantastical, and more</div></div>
+        </div>
+        <p style="font-size:14px;color:rgba(237,230,216,.7);line-height:1.75;margin-bottom:20px;max-width:680px;">If your calendar app supports iCal export (most do), you can sync it with Flock. Look for any of these in your app's settings:</p>
+        <ol class="ig-steps" style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px 32px;max-width:680px">
+          <li><span class="n">→</span><span><strong style="color:var(--cream);">"Subscribe"</strong> or <strong style="color:var(--cream);">"Export"</strong> — most apps use one of these terms for sharing a calendar feed.</span></li>
+          <li><span class="n">→</span><span><strong style="color:var(--cream);">A URL ending in .ics</strong> — any link that ends in <code style="font-family:'DM Mono',monospace;font-size:11px;background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;">.ics</code> is a valid iCal feed Flock can sync.</span></li>
+          <li><span class="n">→</span><span><strong style="color:var(--cream);">"webcal://"</strong> — links starting with <code style="font-family:'DM Mono',monospace;font-size:11px;background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;">webcal://</code> work too — paste them in as-is and Flock handles it.</span></li>
+          <li><span class="n">→</span><span><strong style="color:var(--cream);">TeamSnap, SportsEngine</strong> — team calendars always include a "Subscribe to iCal" link. Copy it and paste into Flock.</span></li>
+        </ol>
+        <div class="ig-tip" style="max-width:680px;margin-top:24px"><strong>Still can't find it?</strong> Email us at <a href="mailto:hello@flockfamily.app" style="color:var(--terra-l);">hello@flockfamily.app</a> — we'll help you find it or add support for the platform.</div>
+      </div>
+
+    </div>
   </div>
 </section>
 
