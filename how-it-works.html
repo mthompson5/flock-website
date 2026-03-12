@@ -3,30 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How It Works — Flock Family</title>
-<meta name="description" content="Get started with Flock Family in four guided steps — sign up, add your members, sync your calendars, and invite your flock. Ready in minutes.">
+<title>How Flock Works — Family Calendar Setup in Minutes</title>
+<meta name="description" content="Get your family calendar up and running in four steps. Sign up, add members, connect your existing calendars, and invite your flock.">
+<meta property="og:site_name" content="Flock Family">
+<meta property="og:title" content="How Flock Works — Family Calendar Setup in Minutes">
+<meta property="og:description" content="Get your family calendar up and running in four steps. Sign up, add members, connect your existing calendars, and invite your flock.">
+<link rel="canonical" href="https://flockfamily.app/how-it-works.html">
+<meta property="og:url" content="https://flockfamily.app/how-it-works.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://flockfamily.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How Flock Works — Family Calendar Setup in Minutes">
+<meta name="twitter:description" content="Get your family calendar up and running in four steps. Sign up, add members, connect your existing calendars, and invite your flock.">
+<meta name="twitter:image" content="https://flockfamily.app/og-image.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
 <style>
-  :root {
-    --terra:#C4614A; --terra-l:#D9806C; --terra-p:#F2DDD8;
-    --cream:#F7F2EA; --cream-d:#EDE6D8;
-    --sage:#7A9E7E; --sage-l:#A8C4AB; --sage-p:#E4EDE5;
-    --bark:#3D2B1F; --bark-m:#6B4C3B;
-    --white:#FDFAF5; --slate:#5C5248;
-    --gold:#C9A84C; --gold-p:#F5EDD4;
-  }
-  *{margin:0;padding:0;box-sizing:border-box} html{scroll-behavior:smooth}
-  body{background:var(--white);color:var(--bark);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
-
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,250,245,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--cream-d);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between}
-  .nav-logo{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--terra);letter-spacing:-.5px;text-decoration:none}
-  .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
-  .nav-links a{font-size:13px;color:var(--slate);text-decoration:none;transition:color .2s}
-  .nav-links a:hover,.nav-links a.active{color:var(--terra)}
-  .nav-signin{background:var(--bark);color:var(--cream)!important;padding:10px 22px;border-radius:100px;font-weight:500!important;transition:background .2s,transform .15s!important}
-  .nav-signin:hover{background:var(--terra)!important;transform:translateY(-1px)}
-  .nav-mobile-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px}
-
   section{padding:96px 0}
   .container{max-width:1140px;margin:0 auto;padding:0 48px}
   .lbl{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);margin-bottom:14px;display:block}
@@ -35,21 +29,7 @@
   .sub{font-size:16px;line-height:1.8;color:var(--slate);max-width:560px}
   .body-text{font-size:15px;line-height:1.85;color:var(--bark-m);margin-bottom:20px}
 
-  .page-hero{background:var(--bark);padding:148px 48px 96px;position:relative;overflow:hidden}
-  .ph-dots{position:absolute;inset:0;opacity:.03;background-image:radial-gradient(circle at 1px 1px,var(--cream) 1px,transparent 0);background-size:36px 36px;pointer-events:none}
   .ph-glow{position:absolute;top:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(196,97,74,.12) 0%,transparent 70%);pointer-events:none}
-  .ph-inner{position:relative;z-index:2;max-width:1140px;margin:0 auto}
-  .ph-eye{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--terra-l);margin-bottom:20px;display:block}
-  .ph-title{font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,80px);font-weight:700;color:var(--cream);line-height:1;letter-spacing:-2px;margin-bottom:24px}
-  .ph-title em{font-style:italic;color:var(--terra-l)}
-  .ph-body{font-size:17px;font-weight:300;color:rgba(237,230,216,.7);line-height:1.8;max-width:540px}
-
-  .breadcrumb{background:var(--cream);border-bottom:1px solid var(--cream-d);padding:14px 48px}
-  .bc-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--slate)}
-  .bc-inner a{color:var(--slate);text-decoration:none;transition:color .2s}
-  .bc-inner a:hover{color:var(--terra)}
-  .bc-sep{opacity:.4}
-  .bc-cur{color:var(--terra);font-weight:500}
 
   .cta-strip{background:var(--terra);padding:80px 48px;text-align:center}
   .cta-strip-t{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,44px);font-weight:600;color:var(--cream);line-height:1.2;letter-spacing:-.5px;margin-bottom:16px}
@@ -58,30 +38,13 @@
   .btn-cream{background:var(--cream);color:var(--bark);padding:14px 32px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;transition:background .2s,transform .15s;display:inline-block}
   .btn-cream:hover{background:var(--white);transform:translateY(-2px)}
 
-  footer{background:#2A1D14;padding:56px 48px}
-  .footer-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
-  .footer-logo{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--cream);letter-spacing:-.5px}
-  .footer-tagline{font-size:12px;color:rgba(247,242,234,.3);letter-spacing:.15em;text-transform:uppercase;margin-top:4px}
-  .footer-links{display:flex;gap:28px;list-style:none;flex-wrap:wrap}
-  .footer-links a{font-size:13px;color:rgba(247,242,234,.4);text-decoration:none;transition:color .2s}
-  .footer-links a:hover{color:var(--cream)}
-  .footer-copy{font-size:11px;color:rgba(247,242,234,.2);letter-spacing:.08em}
-
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
   .reveal.visible{opacity:1;transform:none}
 
   @media(max-width:900px){
-    nav{padding:0 24px}
-    .nav-links{display:none}
-    .nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:var(--white);padding:24px;border-bottom:1px solid var(--cream-d);gap:20px;z-index:99}
-    .nav-mobile-toggle{display:flex}
     .container{padding:0 24px}
     section{padding:64px 0}
-    .page-hero{padding:120px 24px 72px}
-    .breadcrumb{padding:14px 24px}
     .cta-strip{padding:64px 24px}
-    .footer-inner{flex-direction:column;text-align:center}
-    .footer-links{justify-content:center}
   }
 
   #steps{background:var(--cream)}
@@ -136,6 +99,80 @@
     .sync-row{justify-content:center}
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://flockfamily.app/"},
+    {"@type": "ListItem", "position": 2, "name": "How It Works", "item": "https://flockfamily.app/how-it-works.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do all family members need their own account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. One person creates and manages the Flock account. Other family members can be added as editors or viewers without needing their own login. Kids can appear on the calendar without any account at all."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I import my existing calendar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Flock supports importing from Google Calendar, Apple Calendar, and any calendar that exports .ics files. You can import a family member's existing calendar directly into their row, so you're not starting from zero."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my family's data private?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Completely. Flock does not use advertising, does not sell data, and does not share your family's schedule with third parties. Your data is encrypted in transit and at rest. We're building a tool for your family — not an audience for advertisers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Flock sync with my existing calendar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Connect any iCal feed — Apple Calendar, Google Calendar, Airbnb, sports league schedules. Flock syncs automatically in the background. Cancelled events disappear, rescheduled events update, and new events appear without you having to do anything."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does wall display mode require?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An iPad, a power cable, and a way to mount it. Open Flock in Safari, go to wall display mode, and leave it running. It updates automatically whenever anything changes on any device."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can grandparents or family members outside our household see our calendar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — this is what Multi-Flock is for. Share an invite code and anyone can follow your flock. Their Flock view shows your schedule alongside theirs in one unified calendar. They see exactly what you choose to share, and each flock stays fully independent. No other family calendar offers this."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if two people edit the same event at once?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Flock uses real-time conflict resolution to handle simultaneous edits gracefully. The last saved version wins. You'll never end up with corrupted or duplicated events."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <nav>
@@ -154,6 +191,7 @@
     </svg>
   </button>
 </nav>
+<main>
 <div class="page-hero">
   <div class="ph-dots"></div><div class="ph-glow"></div>
   <div class="ph-inner">
@@ -299,6 +337,7 @@
   <p class="cta-strip-b">Start for free. Set up in minutes. Your family's whole week, finally in one place.</p>
   <a href="https://app.flockfamily.app/signup" class="btn-cream">Get Started</a>
 </div>
+</main>
 
 <footer>
   <div class="footer-inner">

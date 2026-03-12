@@ -4,78 +4,41 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — Flock Family</title>
-<meta name="description" content="Flock's privacy policy. No ads. No data selling. No third-party sharing. Your family's schedule is yours.">
+<meta name="description" content="Flock Family's privacy policy. No ads, no data selling, no third-party sharing. Your family's schedule stays private.">
+<meta property="og:site_name" content="Flock Family">
+<meta property="og:title" content="Privacy Policy — Flock Family">
+<meta property="og:description" content="Flock Family's privacy policy. No ads, no data selling, no third-party sharing. Your family's schedule stays private.">
+<link rel="canonical" href="https://flockfamily.app/privacy.html">
+<meta property="og:url" content="https://flockfamily.app/privacy.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://flockfamily.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Privacy Policy — Flock Family">
+<meta name="twitter:description" content="Flock Family's privacy policy. No ads, no data selling, no third-party sharing. Your family's schedule stays private.">
+<meta name="twitter:image" content="https://flockfamily.app/og-image.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
 <style>
-  :root {
-    --terra:#C4614A; --terra-l:#D9806C; --terra-p:#F2DDD8;
-    --cream:#F7F2EA; --cream-d:#EDE6D8;
-    --sage:#7A9E7E; --sage-l:#A8C4AB; --sage-p:#E4EDE5;
-    --bark:#3D2B1F; --bark-m:#6B4C3B;
-    --white:#FDFAF5; --slate:#5C5248;
-    --gold:#C9A84C; --gold-p:#F5EDD4;
-  }
-  *{margin:0;padding:0;box-sizing:border-box} html{scroll-behavior:smooth}
-  body{background:var(--white);color:var(--bark);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
-
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,250,245,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--cream-d);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between}
-  .nav-logo{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--terra);letter-spacing:-.5px;text-decoration:none}
-  .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
-  .nav-links a{font-size:13px;color:var(--slate);text-decoration:none;transition:color .2s}
-  .nav-links a:hover,.nav-links a.active{color:var(--terra)}
-  .nav-signin{background:var(--bark);color:var(--cream)!important;padding:10px 22px;border-radius:100px;font-weight:500!important;transition:background .2s,transform .15s!important}
-  .nav-signin:hover{background:var(--terra)!important;transform:translateY(-1px)}
-  .nav-mobile-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px}
-
-  .page-hero{background:var(--bark);padding:148px 48px 80px;position:relative;overflow:hidden}
-  .ph-dots{position:absolute;inset:0;opacity:.03;background-image:radial-gradient(circle at 1px 1px,var(--cream) 1px,transparent 0);background-size:36px 36px;pointer-events:none}
-  .ph-inner{position:relative;z-index:2;max-width:1140px;margin:0 auto}
-  .ph-eye{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--terra-l);margin-bottom:20px;display:block}
-  .ph-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,64px);font-weight:700;color:var(--cream);line-height:1.1;letter-spacing:-1.5px;margin-bottom:20px}
-  .ph-body{font-size:16px;font-weight:300;color:rgba(237,230,216,.6);line-height:1.8;max-width:500px}
-
-  .breadcrumb{background:var(--cream);border-bottom:1px solid var(--cream-d);padding:14px 48px}
-  .bc-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--slate)}
-  .bc-inner a{color:var(--slate);text-decoration:none;transition:color .2s}
-  .bc-inner a:hover{color:var(--terra)}
-  .bc-sep{opacity:.4}
-  .bc-cur{color:var(--terra);font-weight:500}
-
-  .content{max-width:760px;margin:0 auto;padding:80px 48px 96px}
-  .updated{font-size:12px;color:var(--slate);margin-bottom:56px;padding:12px 18px;background:var(--cream);border-radius:8px;display:inline-block}
-
-  .section{margin-bottom:56px}
-  .section-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--bark);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--cream-d)}
-  p{font-size:15px;line-height:1.85;color:var(--bark-m);margin-bottom:14px}
-  p:last-child{margin-bottom:0}
-  ul{padding-left:20px;margin-bottom:14px}
-  ul li{font-size:15px;line-height:1.8;color:var(--bark-m);margin-bottom:6px}
-  a{color:var(--terra);text-decoration:none}
-  a:hover{text-decoration:underline}
-  .callout{background:var(--sage-p);border-left:3px solid var(--sage);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:14px}
-  .callout p{color:#3A6040;margin-bottom:0}
-
-  footer{background:#2A1D14;padding:56px 48px}
-  .footer-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
-  .footer-logo{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--cream);letter-spacing:-.5px}
-  .footer-tagline{font-size:12px;color:rgba(247,242,234,.3);letter-spacing:.15em;text-transform:uppercase;margin-top:4px}
-  .footer-links{display:flex;gap:28px;list-style:none;flex-wrap:wrap}
-  .footer-links a{font-size:13px;color:rgba(247,242,234,.4);text-decoration:none;transition:color .2s}
-  .footer-links a:hover{color:var(--cream)}
-  .footer-copy{font-size:11px;color:rgba(247,242,234,.2);letter-spacing:.08em}
+  .page-hero{padding:148px 48px 80px}
+  .ph-title{font-size:clamp(36px,5vw,64px);letter-spacing:-1.5px;margin-bottom:20px}
+  .ph-body{font-size:16px;color:rgba(237,230,216,.6);max-width:500px}
 
   @media(max-width:900px){
-    nav{padding:0 24px}
-    .nav-links{display:none}
-    .nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:var(--white);padding:24px;border-bottom:1px solid var(--cream-d);gap:20px;z-index:99}
-    .nav-mobile-toggle{display:flex}
     .page-hero{padding:120px 24px 64px}
-    .breadcrumb{padding:14px 24px}
-    .content{padding:56px 24px 72px}
-    .footer-inner{flex-direction:column;text-align:center}
-    .footer-links{justify-content:center}
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://flockfamily.app/"},
+    {"@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://flockfamily.app/privacy.html"}
+  ]
+}
+</script>
 </head>
 <body>
 <nav>
@@ -94,6 +57,7 @@
     </svg>
   </button>
 </nav>
+<main>
 
 <div class="page-hero">
   <div class="ph-dots"></div>
@@ -191,6 +155,7 @@
     <p>Questions, concerns, or requests related to this policy can be sent to <a href="mailto:hello@flockfamily.app">hello@flockfamily.app</a>. We read every message.</p>
   </div>
 </div>
+</main>
 
 <footer>
   <div class="footer-inner">

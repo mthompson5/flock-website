@@ -3,30 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Flock Family</title>
-<meta name="description" content="The story, principles, and personality behind Flock — the family calendar built around how families actually live.">
+<title>About Flock Family — Built for Real Family Life</title>
+<meta name="description" content="Flock Family started as a personal project for one household. Today it helps families coordinate schedules without the chaos of group texts.">
+<meta property="og:site_name" content="Flock Family">
+<meta property="og:title" content="About Flock Family — Built for Real Family Life">
+<meta property="og:description" content="Flock Family started as a personal project for one household. Today it helps families coordinate schedules without the chaos of group texts.">
+<link rel="canonical" href="https://flockfamily.app/about.html">
+<meta property="og:url" content="https://flockfamily.app/about.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://flockfamily.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About Flock Family — Built for Real Family Life">
+<meta name="twitter:description" content="Flock Family started as a personal project for one household. Today it helps families coordinate schedules without the chaos of group texts.">
+<meta name="twitter:image" content="https://flockfamily.app/og-image.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
 <style>
-  :root {
-    --terra:#C4614A; --terra-l:#D9806C; --terra-p:#F2DDD8;
-    --cream:#F7F2EA; --cream-d:#EDE6D8;
-    --sage:#7A9E7E; --sage-l:#A8C4AB; --sage-p:#E4EDE5;
-    --bark:#3D2B1F; --bark-m:#6B4C3B;
-    --white:#FDFAF5; --slate:#5C5248;
-    --gold:#C9A84C; --gold-p:#F5EDD4;
-  }
-  *{margin:0;padding:0;box-sizing:border-box} html{scroll-behavior:smooth}
-  body{background:var(--white);color:var(--bark);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
-
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,250,245,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--cream-d);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between}
-  .nav-logo{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--terra);letter-spacing:-.5px;text-decoration:none}
-  .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
-  .nav-links a{font-size:13px;color:var(--slate);text-decoration:none;transition:color .2s}
-  .nav-links a:hover,.nav-links a.active{color:var(--terra)}
-  .nav-signin{background:var(--bark);color:var(--cream)!important;padding:10px 22px;border-radius:100px;font-weight:500!important;transition:background .2s,transform .15s!important}
-  .nav-signin:hover{background:var(--terra)!important;transform:translateY(-1px)}
-  .nav-mobile-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px}
-
   section{padding:96px 0}
   .container{max-width:1140px;margin:0 auto;padding:0 48px}
   .lbl{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);margin-bottom:14px;display:block}
@@ -35,21 +29,7 @@
   .sub{font-size:16px;line-height:1.8;color:var(--slate);max-width:560px}
   .body-text{font-size:15px;line-height:1.85;color:var(--bark-m);margin-bottom:20px}
 
-  .page-hero{background:var(--bark);padding:148px 48px 96px;position:relative;overflow:hidden}
-  .ph-dots{position:absolute;inset:0;opacity:.03;background-image:radial-gradient(circle at 1px 1px,var(--cream) 1px,transparent 0);background-size:36px 36px;pointer-events:none}
   .ph-glow{position:absolute;top:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(196,97,74,.12) 0%,transparent 70%);pointer-events:none}
-  .ph-inner{position:relative;z-index:2;max-width:1140px;margin:0 auto}
-  .ph-eye{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--terra-l);margin-bottom:20px;display:block}
-  .ph-title{font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,80px);font-weight:700;color:var(--cream);line-height:1;letter-spacing:-2px;margin-bottom:24px}
-  .ph-title em{font-style:italic;color:var(--terra-l)}
-  .ph-body{font-size:17px;font-weight:300;color:rgba(237,230,216,.7);line-height:1.8;max-width:540px}
-
-  .breadcrumb{background:var(--cream);border-bottom:1px solid var(--cream-d);padding:14px 48px}
-  .bc-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--slate)}
-  .bc-inner a{color:var(--slate);text-decoration:none;transition:color .2s}
-  .bc-inner a:hover{color:var(--terra)}
-  .bc-sep{opacity:.4}
-  .bc-cur{color:var(--terra);font-weight:500}
 
   .cta-strip{background:var(--terra);padding:80px 48px;text-align:center}
   .cta-strip-t{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,44px);font-weight:600;color:var(--cream);line-height:1.2;letter-spacing:-.5px;margin-bottom:16px}
@@ -58,30 +38,13 @@
   .btn-cream{background:var(--cream);color:var(--bark);padding:14px 32px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;transition:background .2s,transform .15s;display:inline-block}
   .btn-cream:hover{background:var(--white);transform:translateY(-2px)}
 
-  footer{background:#2A1D14;padding:56px 48px}
-  .footer-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
-  .footer-logo{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--cream);letter-spacing:-.5px}
-  .footer-tagline{font-size:12px;color:rgba(247,242,234,.3);letter-spacing:.15em;text-transform:uppercase;margin-top:4px}
-  .footer-links{display:flex;gap:28px;list-style:none;flex-wrap:wrap}
-  .footer-links a{font-size:13px;color:rgba(247,242,234,.4);text-decoration:none;transition:color .2s}
-  .footer-links a:hover{color:var(--cream)}
-  .footer-copy{font-size:11px;color:rgba(247,242,234,.2);letter-spacing:.08em}
-
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
   .reveal.visible{opacity:1;transform:none}
 
   @media(max-width:900px){
-    nav{padding:0 24px}
-    .nav-links{display:none}
-    .nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:var(--white);padding:24px;border-bottom:1px solid var(--cream-d);gap:20px;z-index:99}
-    .nav-mobile-toggle{display:flex}
     .container{padding:0 24px}
     section{padding:64px 0}
-    .page-hero{padding:120px 24px 72px}
-    .breadcrumb{padding:14px 24px}
     .cta-strip{padding:64px 24px}
-    .footer-inner{flex-direction:column;text-align:center}
-    .footer-links{justify-content:center}
   }
 
   /* mission */
@@ -127,6 +90,16 @@
     .sp-lbl{font-size:11px}
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://flockfamily.app/"},
+    {"@type": "ListItem", "position": 2, "name": "About", "item": "https://flockfamily.app/about.html"}
+  ]
+}
+</script>
 </head>
 <body>
 <nav>
@@ -145,6 +118,7 @@
     </svg>
   </button>
 </nav>
+<main>
 <div class="page-hero">
   <div class="ph-dots"></div><div class="ph-glow"></div>
   <div class="ph-inner">
@@ -255,6 +229,7 @@
   <p class="cta-strip-b">Set up your family calendar in minutes. No credit card needed.</p>
   <a href="https://app.flockfamily.app/signup" class="btn-cream">Get Started</a>
 </div>
+</main>
 
 <footer>
   <div class="footer-inner">
