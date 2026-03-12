@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Flock</title>
+<meta name="description" content="Flock's privacy policy. No ads. No data selling. No third-party sharing. Your family's schedule is yours.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --terra:#C4614A; --terra-l:#D9806C; --terra-p:#F2DDD8;
+    --cream:#F7F2EA; --cream-d:#EDE6D8;
+    --sage:#7A9E7E; --sage-l:#A8C4AB; --sage-p:#E4EDE5;
+    --bark:#3D2B1F; --bark-m:#6B4C3B;
+    --white:#FDFAF5; --slate:#5C5248;
+    --gold:#C9A84C; --gold-p:#F5EDD4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box} html{scroll-behavior:smooth}
+  body{background:var(--white);color:var(--bark);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,250,245,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--cream-d);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--terra);letter-spacing:-.5px;text-decoration:none}
+  .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+  .nav-links a{font-size:13px;color:var(--slate);text-decoration:none;transition:color .2s}
+  .nav-links a:hover,.nav-links a.active{color:var(--terra)}
+  .nav-signin{background:var(--bark);color:var(--cream)!important;padding:10px 22px;border-radius:100px;font-weight:500!important;transition:background .2s,transform .15s!important}
+  .nav-signin:hover{background:var(--terra)!important;transform:translateY(-1px)}
+  .nav-mobile-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px}
+
+  .page-hero{background:var(--bark);padding:148px 48px 80px;position:relative;overflow:hidden}
+  .ph-dots{position:absolute;inset:0;opacity:.03;background-image:radial-gradient(circle at 1px 1px,var(--cream) 1px,transparent 0);background-size:36px 36px;pointer-events:none}
+  .ph-inner{position:relative;z-index:2;max-width:1140px;margin:0 auto}
+  .ph-eye{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--terra-l);margin-bottom:20px;display:block}
+  .ph-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,64px);font-weight:700;color:var(--cream);line-height:1.1;letter-spacing:-1.5px;margin-bottom:20px}
+  .ph-body{font-size:16px;font-weight:300;color:rgba(237,230,216,.6);line-height:1.8;max-width:500px}
+
+  .breadcrumb{background:var(--cream);border-bottom:1px solid var(--cream-d);padding:14px 48px}
+  .bc-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--slate)}
+  .bc-inner a{color:var(--slate);text-decoration:none;transition:color .2s}
+  .bc-inner a:hover{color:var(--terra)}
+  .bc-sep{opacity:.4}
+  .bc-cur{color:var(--terra);font-weight:500}
+
+  .content{max-width:760px;margin:0 auto;padding:80px 48px 96px}
+  .updated{font-size:12px;color:var(--slate);margin-bottom:56px;padding:12px 18px;background:var(--cream);border-radius:8px;display:inline-block}
+
+  .section{margin-bottom:56px}
+  .section-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--bark);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--cream-d)}
+  p{font-size:15px;line-height:1.85;color:var(--bark-m);margin-bottom:14px}
+  p:last-child{margin-bottom:0}
+  ul{padding-left:20px;margin-bottom:14px}
+  ul li{font-size:15px;line-height:1.8;color:var(--bark-m);margin-bottom:6px}
+  a{color:var(--terra);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .callout{background:var(--sage-p);border-left:3px solid var(--sage);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:14px}
+  .callout p{color:#3A6040;margin-bottom:0}
+
+  footer{background:#2A1D14;padding:56px 48px}
+  .footer-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+  .footer-logo{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--cream);letter-spacing:-.5px}
+  .footer-tagline{font-size:12px;color:rgba(247,242,234,.3);letter-spacing:.15em;text-transform:uppercase;margin-top:4px}
+  .footer-links{display:flex;gap:28px;list-style:none;flex-wrap:wrap}
+  .footer-links a{font-size:13px;color:rgba(247,242,234,.4);text-decoration:none;transition:color .2s}
+  .footer-links a:hover{color:var(--cream)}
+  .footer-copy{font-size:11px;color:rgba(247,242,234,.2);letter-spacing:.08em}
+
+  @media(max-width:900px){
+    nav{padding:0 24px}
+    .nav-links{display:none}
+    .nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:var(--white);padding:24px;border-bottom:1px solid var(--cream-d);gap:20px;z-index:99}
+    .nav-mobile-toggle{display:flex}
+    .page-hero{padding:120px 24px 64px}
+    .breadcrumb{padding:14px 24px}
+    .content{padding:56px 24px 72px}
+    .footer-inner{flex-direction:column;text-align:center}
+    .footer-links{justify-content:center}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">flock</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/features.html">Features</a></li>
+    <li><a href="/how-it-works.html">How It Works</a></li>
+    <li><a href="https://app.flockfamily.app" class="nav-signin">Sign In</a></li>
+  </ul>
+  <button class="nav-mobile-toggle" id="menuToggle" aria-label="Menu">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <rect y="4" width="22" height="2" rx="1" fill="#3D2B1F"/>
+      <rect y="10" width="22" height="2" rx="1" fill="#3D2B1F"/>
+      <rect y="16" width="22" height="2" rx="1" fill="#3D2B1F"/>
+    </svg>
+  </button>
+</nav>
+
+<div class="page-hero">
+  <div class="ph-dots"></div>
+  <div class="ph-inner">
+    <span class="ph-eye">Legal</span>
+    <h1 class="ph-title">Privacy Policy</h1>
+    <p class="ph-body">Short version: your family's data is yours. We don't sell it, advertise with it, or share it. Ever.</p>
+  </div>
+</div>
+<div class="breadcrumb"><div class="bc-inner"><a href="/">Home</a><span class="bc-sep">/</span><span class="bc-cur">Privacy Policy</span></div></div>
+
+<div class="content">
+  <span class="updated">Last updated: March 12, 2026</span>
+
+  <div class="callout">
+    <p>Flock is a tool for your family, not an audience for advertisers. We do not run ads, sell your data, or share your family's information with third parties. This policy explains exactly what we collect, why, and how it's used.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">1. Who we are</h2>
+    <p>Flock Family ("Flock," "we," "us") is a family calendar application available at <a href="https://app.flockfamily.app">app.flockfamily.app</a>. We are based in the United States. Questions about this policy can be directed to <a href="mailto:hello@flockfamily.app">hello@flockfamily.app</a>.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">2. What we collect</h2>
+    <p>We collect only what's necessary to run the service:</p>
+    <ul>
+      <li><strong>Account information</strong> — your email address or username and a securely hashed password.</li>
+      <li><strong>Family data</strong> — the family name, member names, colors, and roles you set up in Flock.</li>
+      <li><strong>Calendar events</strong> — event titles, dates, times, and which family members they're associated with.</li>
+      <li><strong>iCal sync URLs</strong> — external calendar feed URLs you connect to Flock (e.g. Apple Calendar, Google Calendar, Airbnb). We store these to perform background sync on your behalf.</li>
+      <li><strong>Location (ZIP code)</strong> — if you configure weather, we store your home ZIP code to fetch a local forecast from Open-Meteo, a privacy-respecting weather service. This is optional.</li>
+      <li><strong>Session data</strong> — a secure JWT token stored in your browser to keep you signed in.</li>
+    </ul>
+    <p>We do not collect browsing history, device fingerprints, or any information beyond what's needed to show your family's calendar.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">3. How we use your data</h2>
+    <p>Your data is used for one purpose: operating Flock for your family.</p>
+    <ul>
+      <li>To display your family's calendar and sync events across devices.</li>
+      <li>To authenticate you when you sign in.</li>
+      <li>To fetch and sync events from connected iCal feeds.</li>
+      <li>To show weather in the calendar header (if configured).</li>
+      <li>To enable Multi-Flock — letting invited members from other households follow your schedule.</li>
+    </ul>
+    <p>We do not use your data for advertising, profiling, or any purpose unrelated to running the app.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">4. Third-party services</h2>
+    <p>Flock uses a small number of infrastructure providers to operate the service:</p>
+    <ul>
+      <li><strong>Vercel</strong> — hosts the application. Vercel may log standard request metadata (IP address, user agent) for security and performance purposes.</li>
+      <li><strong>Supabase</strong> — hosts our PostgreSQL database. Your family's data is stored in Supabase's infrastructure, encrypted at rest.</li>
+      <li><strong>Open-Meteo</strong> — provides weather data. If you enable weather, your ZIP code is sent to Open-Meteo to retrieve a forecast. Open-Meteo does not track users.</li>
+    </ul>
+    <p>We do not integrate with advertising networks, analytics platforms, or social media trackers.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">5. Data sharing</h2>
+    <p>We do not sell, rent, or share your personal data with third parties for their own purposes. We will only disclose your information if required by law or to protect the safety of our users.</p>
+    <p>Within Flock, data is shared only as you direct — for example, family members you invite can see the events on your calendar, and Multi-Flock followers can see the schedule you've made available to them via an invite code.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">6. Data retention</h2>
+    <p>Your data is retained as long as your account is active. If you delete your account, your family's data — including all events, members, and calendar syncs — is permanently deleted from our systems. To request deletion, email <a href="mailto:hello@flockfamily.app">hello@flockfamily.app</a>.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">7. Security</h2>
+    <p>All data is transmitted over HTTPS. Passwords are hashed using bcrypt and never stored in plaintext. Database access is restricted by row-level security policies. We take reasonable technical measures to protect your family's information from unauthorized access.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">8. Children</h2>
+    <p>Flock is designed for family use and may be used to track schedules for children. We do not knowingly collect personal information directly from children under 13. Children appear in Flock as named rows on a family's calendar — their data is managed by the family account holder.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">9. Your rights</h2>
+    <p>You have the right to access, correct, or delete your data at any time. You can update your account information from within the app. To request a full export or deletion of your data, contact us at <a href="mailto:hello@flockfamily.app">hello@flockfamily.app</a> and we'll respond within 30 days.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">10. Changes to this policy</h2>
+    <p>If we make material changes to this policy, we'll update the date at the top and notify account holders by email. Continued use of Flock after changes are posted constitutes acceptance of the updated policy.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">11. Contact</h2>
+    <p>Questions, concerns, or requests related to this policy can be sent to <a href="mailto:hello@flockfamily.app">hello@flockfamily.app</a>. We read every message.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">flock</div>
+      <div class="footer-tagline">Everyone, everywhere, always.</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/features.html">Features</a></li>
+      <li><a href="/how-it-works.html">How It Works</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="mailto:hello@flockfamily.app">Contact</a></li>
+    </ul>
+    <div class="footer-copy">&copy; 2026 Flock &middot; flockfamily.app</div>
+  </div>
+</footer>
+<script>
+  document.getElementById('menuToggle').addEventListener('click', () =>
+    document.getElementById('navLinks').classList.toggle('open'));
+</script>
+</body>
+</html>
