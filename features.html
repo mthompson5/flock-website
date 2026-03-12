@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Features — Flock</title>
-<meta name="description" content="Every feature in Flock — the matrix view, smart reminders, shared rows, wall display mode, and more.">
+<meta name="description" content="Every feature in Flock — the matrix view, recurring events, calendar sync, shared rows, multi-flock view, wall display mode, and more.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -249,21 +249,37 @@
   </div>
 </div>
 
-<!-- SMART REMINDERS -->
+<!-- RECURRING EVENTS -->
 <div class="feat-row">
   <div class="feat-inner">
     <div class="reveal">
-      <span class="feat-tag">&#x1F514; Smart Reminders</span>
-      <h2 class="feat-t">The right reminder to the right person. Never more.</h2>
-      <p class="feat-b">Most apps send you notifications constantly and hope one is useful. Flock sends the right reminder to the right person at the right time. Michael gets a reminder that soccer starts in 30 minutes. Allison gets a heads-up that school pickup is in an hour. Mike gets nothing, because he doesn't need to be anywhere until 6.</p>
-      <div class="feat-callout">Every notification is written in plain language. No jargon, no caps lock, no exclamation marks. It sounds like a calm, organized person — because that's what Flock is.</div>
+      <span class="feat-tag">&#x1F504; Recurring Events</span>
+      <h2 class="feat-t">Set it once. Flock handles the rest of the year.</h2>
+      <p class="feat-b">Soccer every Tuesday and Thursday. Piano every Wednesday. Date night every other Friday. Add a recurring event once and Flock repeats it daily, weekly, or monthly. Edit a single occurrence without touching the rest of the series — or update all future events at once.</p>
+      <div class="feat-callout">Recurring events stay in sync with iCal feeds too — if your source calendar updates a recurring series, Flock follows automatically.</div>
     </div>
     <div class="reveal">
-      <div class="feat-vis-dark">
-        <div class="notif-stack">
-          <div class="notif"><div class="notif-ico">&#x1F426;</div><div><div class="notif-app">Flock</div><div class="notif-msg">Soccer starts in 30 minutes — Michael.</div><div class="notif-time">Just now</div></div></div>
-          <div class="notif"><div class="notif-ico" style="background:var(--sage);">&#x1F426;</div><div><div class="notif-app">Flock</div><div class="notif-msg">School pickup in one hour — Sawyer and Oliver.</div><div class="notif-time">2 min ago</div></div></div>
-          <div class="notif"><div class="notif-ico" style="background:var(--gold);">&#x1F426;</div><div><div class="notif-app">Flock</div><div class="notif-msg">Looks like Oliver has two things at the same time on Saturday.</div><div class="notif-time">Yesterday</div></div></div>
+      <div class="feat-vis-light">
+        <div style="background:var(--white);border-radius:10px;padding:22px;width:100%;box-shadow:0 4px 20px rgba(61,43,31,.07);">
+          <div style="font-size:9.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);margin-bottom:12px;">Add event</div>
+          <div style="background:var(--cream);border:1.5px solid var(--terra);border-radius:8px;padding:11px 14px;font-size:13px;color:var(--bark);margin-bottom:14px;">Soccer practice 4pm</div>
+          <div style="font-size:9.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);margin-bottom:8px;">Repeat</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px;">
+            <div style="text-align:center;padding:8px 4px;background:var(--cream);border-radius:6px;font-size:11px;color:var(--slate);">Never</div>
+            <div style="text-align:center;padding:8px 4px;background:var(--cream);border-radius:6px;font-size:11px;color:var(--slate);">Daily</div>
+            <div style="text-align:center;padding:8px 4px;background:var(--terra);border-radius:6px;font-size:11px;color:var(--cream);font-weight:500;">Weekly</div>
+            <div style="text-align:center;padding:8px 4px;background:var(--cream);border-radius:6px;font-size:11px;color:var(--slate);">Monthly</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:16px;">
+            <div style="text-align:center;padding:7px 2px;background:var(--cream);border-radius:5px;font-size:9.5px;color:var(--slate);">M</div>
+            <div style="text-align:center;padding:7px 2px;background:var(--terra);border-radius:5px;font-size:9.5px;color:var(--cream);font-weight:600;">T</div>
+            <div style="text-align:center;padding:7px 2px;background:var(--cream);border-radius:5px;font-size:9.5px;color:var(--slate);">W</div>
+            <div style="text-align:center;padding:7px 2px;background:var(--terra);border-radius:5px;font-size:9.5px;color:var(--cream);font-weight:600;">T</div>
+            <div style="text-align:center;padding:7px 2px;background:var(--cream);border-radius:5px;font-size:9.5px;color:var(--slate);">F</div>
+            <div style="text-align:center;padding:7px 2px;background:var(--cream);border-radius:5px;font-size:9.5px;color:var(--slate);">S</div>
+            <div style="text-align:center;padding:7px 2px;background:var(--cream);border-radius:5px;font-size:9.5px;color:var(--slate);">S</div>
+          </div>
+          <div style="width:100%;background:var(--terra);color:var(--cream);border-radius:100px;padding:11px;font-size:13px;font-weight:500;text-align:center;">Add to Flock</div>
         </div>
       </div>
     </div>
@@ -287,6 +303,48 @@
           <div class="sd-row"><div class="sd-name"><span class="sd-dot" style="background:var(--gold);"></span>Dinner</div><div class="sd-cell" style="background:var(--gold-p);color:#8A6A1A;">Pasta</div><div class="sd-cell" style="background:var(--gold-p);color:#8A6A1A;">Tacos</div><div class="sd-cell" style="background:var(--gold-p);color:#8A6A1A;">Out</div><div class="sd-cell" style="background:var(--gold-p);color:#8A6A1A;">Soup</div><div class="sd-cell" style="background:var(--gold-p);color:#8A6A1A;">Pizza</div><div class="sd-cell e"></div><div class="sd-cell e"></div></div>
           <div class="sd-row"><div class="sd-name"><span class="sd-dot" style="background:#8AABBC;"></span>Driving</div><div class="sd-cell" style="background:#DDE8F0;color:#3A6080;">Allison</div><div class="sd-cell e"></div><div class="sd-cell" style="background:#DDE8F0;color:#3A6080;">Mike</div><div class="sd-cell e"></div><div class="sd-cell" style="background:#DDE8F0;color:#3A6080;">Allison</div><div class="sd-cell e"></div><div class="sd-cell e"></div></div>
           <div class="sd-row"><div class="sd-name"><span class="sd-dot" style="background:#EDE0D8;"></span>Cottage</div><div class="sd-cell e"></div><div class="sd-cell e"></div><div class="sd-cell e"></div><div class="sd-cell e"></div><div class="sd-cell e"></div><div class="sd-cell" style="background:var(--terra-p);color:#8A5545;grid-column:span 2;font-size:6.5px;">Guests &#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MULTI-FLOCK -->
+<div class="feat-row">
+  <div class="feat-inner">
+    <div class="reveal">
+      <span class="feat-tag">&#x1F30E; Multi-Flock View</span>
+      <h2 class="feat-t">The only family calendar where families can follow families.</h2>
+      <p class="feat-b">Multi-Flock is something no other family calendar offers. Using an invite code, anyone — grandparents, a co-parent, adult siblings across households — can follow your flock and see your schedule alongside theirs in a single unified view. A flock switcher in the header lets you toggle between flocks or see them all at once.</p>
+      <p class="feat-b">Grandma wants to know when the grandkids have games? She joins with an invite code and sees Michael's soccer and Sawyer's piano right in her own Flock view. No screenshots, no shared spreadsheets, no "can you send me the schedule again?"</p>
+      <div class="feat-callout">Each flock stays fully independent — separate members, separate events, separate settings. Multi-Flock just bridges them when you want to see the bigger picture. You control exactly what others can see.</div>
+    </div>
+    <div class="reveal">
+      <div class="feat-vis-dark">
+        <div style="width:100%;">
+          <div style="font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,242,234,.3);margin-bottom:10px;">Your flocks</div>
+          <div style="background:rgba(196,97,74,.15);border:1px solid rgba(196,97,74,.3);border-radius:8px;padding:12px 16px;margin-bottom:8px;display:flex;align-items:center;gap:10px;">
+            <div style="width:30px;height:30px;border-radius:50%;background:var(--terra);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🐦</div>
+            <div style="flex:1;">
+              <div style="font-size:12px;font-weight:500;color:rgba(247,242,234,.95);">Thompson Flock</div>
+              <div style="font-size:10px;color:rgba(247,242,234,.4);margin-top:1px;">Your flock · 5 members</div>
+            </div>
+            <div style="font-size:9px;background:var(--terra);color:var(--cream);padding:3px 9px;border-radius:100px;font-weight:500;">Active</div>
+          </div>
+          <div style="background:rgba(122,158,126,.1);border:1px solid rgba(122,158,126,.2);border-radius:8px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:10px;">
+            <div style="width:30px;height:30px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🐦</div>
+            <div style="flex:1;">
+              <div style="font-size:12px;font-weight:500;color:rgba(247,242,234,.7);">Grandma &amp; Grandpa</div>
+              <div style="font-size:10px;color:rgba(247,242,234,.3);margin-top:1px;">Joined via invite · Following</div>
+            </div>
+            <div style="font-size:9px;color:rgba(247,242,234,.3);">View only</div>
+          </div>
+          <div style="font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,242,234,.3);margin-bottom:8px;">Combined this week</div>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="background:rgba(196,97,74,.2);border-left:2px solid var(--terra-l);border-radius:0 4px 4px 0;padding:6px 10px;font-size:10px;color:var(--terra-l);">Allison · Dentist 2pm · Wed</div>
+            <div style="background:rgba(201,168,76,.15);border-left:2px solid #D4B060;border-radius:0 4px 4px 0;padding:6px 10px;font-size:10px;color:#D4B060;">Michael · Soccer 4pm · Thu</div>
+            <div style="background:rgba(122,158,126,.2);border-left:2px solid var(--sage-l);border-radius:0 4px 4px 0;padding:6px 10px;font-size:10px;color:var(--sage-l);">Grandma · Visiting · Sat–Sun</div>
+          </div>
         </div>
       </div>
     </div>
@@ -326,16 +384,16 @@
     <div class="all-grid">
       <div class="af-card reveal"><div class="af-ico">&#x1F5C2;</div><div class="af-t">Matrix View</div><p class="af-b">Every person, every day, in a single grid. The heart of Flock.</p></div>
       <div class="af-card reveal"><div class="af-ico">&#x1F3A8;</div><div class="af-t">Color-Coded Members</div><p class="af-b">Know whose event is whose without reading the text.</p></div>
-      <div class="af-card reveal"><div class="af-ico">&#x1F514;</div><div class="af-t">Smart Reminders</div><p class="af-b">The right nudge, to the right person, at the right time.</p></div>
+      <div class="af-card reveal"><div class="af-ico">&#x1F504;</div><div class="af-t">Recurring Events</div><p class="af-b">Daily, weekly, or monthly repeats. Edit one occurrence or the whole series.</p></div>
       <div class="af-card reveal"><div class="af-ico">&#x1F3E1;</div><div class="af-t">Shared Rows</div><p class="af-b">Dinner, driving, bookings — all in the same view.</p></div>
       <div class="af-card reveal"><div class="af-ico">&#x1F4FA;</div><div class="af-t">Wall Display Mode</div><p class="af-b">Always-on iPad mode for kitchen or entryway.</p></div>
       <div class="af-card reveal"><div class="af-ico">&#x26A1;</div><div class="af-t">Fast Event Adding</div><p class="af-b">Tap a day, start typing. Done in seconds.</p></div>
-      <div class="af-card reveal"><div class="af-ico">&#x1F4F1;</div><div class="af-t">iOS App</div><p class="af-b">Native iPhone app with full access and notifications.</p></div>
+      <div class="af-card reveal"><div class="af-ico">&#x26C5;</div><div class="af-t">Weather</div><p class="af-b">7-day forecast shown right in the calendar header, based on your home location.</p></div>
       <div class="af-card reveal"><div class="af-ico">&#x1F310;</div><div class="af-t">Web App</div><p class="af-b">Full-featured browser access. No download required.</p></div>
       <div class="af-card reveal"><div class="af-ico">&#x1F504;</div><div class="af-t">Real-Time Sync</div><p class="af-b">Any change, any device, updates for everyone instantly.</p></div>
       <div class="af-card reveal"><div class="af-ico">&#x1F465;</div><div class="af-t">Whole Family</div><p class="af-b">Add as many members as you need. No artificial limits.</p></div>
       <div class="af-card reveal"><div class="af-ico">&#x1F512;</div><div class="af-t">Family Privacy</div><p class="af-b">No ads. No data selling. No third-party sharing. Ever.</p></div>
-      <div class="af-card reveal"><div class="af-ico">&#x2728;</div><div class="af-t">More Coming</div><p class="af-b">Recurring events, calendar import, and more in progress.</p></div>
+      <div class="af-card reveal"><div class="af-ico">&#x1F30E;</div><div class="af-t">Multi-Flock</div><p class="af-b">Follow other families' flocks via invite code. See everyone in one unified view.</p></div>
     </div>
   </div>
 </section>
