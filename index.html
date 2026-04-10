@@ -346,6 +346,72 @@
   .event-b { background: #DDE8F0; color: #3A6080; }
   .event-k { background: #EDE0D8; color: var(--bark); }
 
+  /* ─── HERO ANIMATION ─── */
+  @keyframes cellAppear {
+    0% { opacity: 0; transform: scale(0.85); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes cellPulse {
+    0%, 100% { box-shadow: none; }
+    50% { box-shadow: 0 0 0 2px currentColor; }
+  }
+  @keyframes nameSlide {
+    0% { opacity: 0; transform: translateX(-8px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  .phone-mockup .ph-cell:not(.empty) {
+    opacity: 0;
+    animation: cellAppear 0.4s ease-out forwards;
+  }
+  .phone-mockup .ph-name {
+    opacity: 0;
+    animation: nameSlide 0.3s ease-out forwards;
+  }
+
+  /* Stagger names first */
+  .ph-row:nth-child(1) .ph-name { animation-delay: 0.2s; }
+  .ph-row:nth-child(2) .ph-name { animation-delay: 0.35s; }
+  .ph-row:nth-child(3) .ph-name { animation-delay: 0.5s; }
+  .ph-row:nth-child(4) .ph-name { animation-delay: 0.65s; }
+  .ph-row:nth-child(5) .ph-name { animation-delay: 0.8s; }
+
+  /* Then stagger events row by row, left to right */
+  .ph-row:nth-child(1) .ph-cell:nth-child(2):not(.empty) { animation-delay: 0.6s; }
+  .ph-row:nth-child(1) .ph-cell:nth-child(3):not(.empty) { animation-delay: 0.75s; }
+  .ph-row:nth-child(1) .ph-cell:nth-child(4):not(.empty) { animation-delay: 0.9s; }
+  .ph-row:nth-child(1) .ph-cell:nth-child(5):not(.empty) { animation-delay: 1.05s; }
+  .ph-row:nth-child(1) .ph-cell:nth-child(6):not(.empty) { animation-delay: 1.2s; }
+
+  .ph-row:nth-child(2) .ph-cell:nth-child(2):not(.empty) { animation-delay: 0.8s; }
+  .ph-row:nth-child(2) .ph-cell:nth-child(3):not(.empty) { animation-delay: 0.95s; }
+  .ph-row:nth-child(2) .ph-cell:nth-child(4):not(.empty) { animation-delay: 1.1s; }
+  .ph-row:nth-child(2) .ph-cell:nth-child(5):not(.empty) { animation-delay: 1.25s; }
+  .ph-row:nth-child(2) .ph-cell:nth-child(6):not(.empty) { animation-delay: 1.4s; }
+
+  .ph-row:nth-child(3) .ph-cell:nth-child(2):not(.empty) { animation-delay: 1.0s; }
+  .ph-row:nth-child(3) .ph-cell:nth-child(3):not(.empty) { animation-delay: 1.15s; }
+  .ph-row:nth-child(3) .ph-cell:nth-child(4):not(.empty) { animation-delay: 1.3s; }
+  .ph-row:nth-child(3) .ph-cell:nth-child(5):not(.empty) { animation-delay: 1.45s; }
+  .ph-row:nth-child(3) .ph-cell:nth-child(6):not(.empty) { animation-delay: 1.6s; }
+
+  .ph-row:nth-child(4) .ph-cell:nth-child(2):not(.empty) { animation-delay: 1.2s; }
+  .ph-row:nth-child(4) .ph-cell:nth-child(3):not(.empty) { animation-delay: 1.35s; }
+  .ph-row:nth-child(4) .ph-cell:nth-child(4):not(.empty) { animation-delay: 1.5s; }
+  .ph-row:nth-child(4) .ph-cell:nth-child(5):not(.empty) { animation-delay: 1.65s; }
+  .ph-row:nth-child(4) .ph-cell:nth-child(6):not(.empty) { animation-delay: 1.8s; }
+
+  .ph-row:nth-child(5) .ph-cell:nth-child(2):not(.empty) { animation-delay: 1.4s; }
+  .ph-row:nth-child(5) .ph-cell:nth-child(3):not(.empty) { animation-delay: 1.55s; }
+  .ph-row:nth-child(5) .ph-cell:nth-child(4):not(.empty) { animation-delay: 1.7s; }
+  .ph-row:nth-child(5) .ph-cell:nth-child(5):not(.empty) { animation-delay: 1.85s; }
+  .ph-row:nth-child(5) .ph-cell:nth-child(6):not(.empty) { animation-delay: 2.0s; }
+
+  /* Subtle highlight pulse on the last event to draw the eye */
+  .ph-row:nth-child(5) .ph-cell:nth-child(6):not(.empty) {
+    animation: cellAppear 0.4s ease-out 2.0s forwards, cellPulse 1.2s ease-in-out 2.6s 1;
+  }
+
   /* ─── TAGLINE STRIP ─── */
   .tagline-strip {
     background: var(--terracotta);
@@ -1047,10 +1113,10 @@
   <div class="hero-inner">
     <div class="hero-text">
       <span class="hero-eyebrow">Family Calendar — Web</span>
-      <h1 class="hero-title">Everyone, <em>everywhere,</em> always.</h1>
+      <h1 class="hero-title">Your whole family. <em>Every day.</em> One view.</h1>
       <p class="hero-body">Flock is the family calendar that shows every person's schedule at once — no tab-switching, no missed pickups, no "I didn't know about that." Just your whole family, in sync.</p>
       <div class="hero-ctas">
-        <a href="https://app.flockfamily.app/signup" class="btn-primary">Get Started</a>
+        <a href="https://app.flockfamily.app/signup" class="btn-primary">Create Your Family Calendar</a>
         <a href="#how" class="btn-secondary">
           See how it works
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1225,6 +1291,9 @@
         <p class="feature-body">Follow other families via invite code. Grandparents, co-parents, or siblings across households can see your schedule in their own Flock view — no app-sharing required.</p>
       </div>
     </div>
+    <div class="mid-cta reveal" style="text-align:center;margin-top:64px;">
+      <a href="https://app.flockfamily.app/signup" class="btn-primary">Create Your Family Calendar</a>
+    </div>
   </div>
 </section>
 
@@ -1387,6 +1456,38 @@
         </div>
       </div>
     </div>
+    <div class="mid-cta reveal" style="text-align:center;margin-top:64px;">
+      <a href="https://app.flockfamily.app/signup" class="btn-primary">Create Your Family Calendar</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BUILT BY A DAD ─── -->
+<section id="story" style="background:var(--cream);padding:80px 0;">
+  <div class="container reveal" style="max-width:640px;text-align:center;">
+    <span class="section-label">The Story</span>
+    <div class="section-divider"></div>
+    <h2 class="section-heading" style="font-size:clamp(24px,3.5vw,36px);margin-bottom:24px;">Built by a dad who needed it.</h2>
+    <p style="font-size:16px;line-height:1.8;color:var(--slate);margin-bottom:16px;">
+      Flock wasn't born in a startup incubator. It was built in a kitchen — by a dad with three kids, two working parents, and five different calendar apps that still couldn't answer the question: <em>"Wait, who's picking up Oliver?"</em>
+    </p>
+    <p style="font-size:16px;line-height:1.8;color:var(--slate);margin-bottom:32px;">
+      So he built the calendar his family actually needed. Now yours can use it too.
+    </p>
+    <div style="display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-top:24px;">
+      <div style="text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--terracotta);">3</div>
+        <div style="font-size:13px;color:var(--slate);margin-top:4px;">kids</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--terracotta);">5</div>
+        <div style="font-size:13px;color:var(--slate);margin-top:4px;">calendars synced</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--terracotta);">0</div>
+        <div style="font-size:13px;color:var(--slate);margin-top:4px;">missed pickups since</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1482,11 +1583,12 @@
 <section id="cta">
   <span class="cta-eyebrow">Get Started Today</span>
   <h2 class="cta-heading">Your family, <em>in sync.</em></h2>
-  <p class="cta-sub">Set up your family calendar in minutes. No credit card needed. Just your family and a better way to stay organized.</p>
+  <p class="cta-sub">Set up your family calendar in minutes. Flock is completely free right now — no credit card, no trial, no catch.</p>
   <div class="cta-buttons">
-    <a href="https://app.flockfamily.app/signup" class="btn-light">Get Started</a>
+    <a href="https://app.flockfamily.app/signup" class="btn-light">Create Your Family Calendar</a>
     <a href="#how" class="btn-outline">See how it works</a>
   </div>
+  <p style="font-size:12px;color:rgba(237,230,216,0.4);margin-top:24px;letter-spacing:0.02em;">🔒 Your family's data stays private. We never sell or share it.</p>
 </section>
 
 </main>
