@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Opening Day, Mantua! &mdash; Flock Family</title>
+<meta name="description" content="Baseball's back. Soccer never stopped. Flock Family is the family calendar that pulls every sport, practice, and game into one screen. Built by a Mantua family, for sports families.">
+<meta property="og:site_name" content="Flock Family">
+<meta property="og:title" content="Happy Opening Day, Mantua Little League!">
+<meta property="og:description" content="Baseball's back. Soccer never stopped. Flock Family pulls every sport, practice, and game into one screen. Free to use.">
+<link rel="canonical" href="https://flockfamily.app/opening-day.html">
+<meta property="og:url" content="https://flockfamily.app/opening-day.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://flockfamily.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Happy Opening Day, Mantua Little League!">
+<meta name="twitter:description" content="Baseball's back. Soccer never stopped. Flock Family pulls every sport, practice, and game into one screen. Free to use.">
+<meta name="twitter:image" content="https://flockfamily.app/og-image.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<style>
+  /* ─── HERO ─── */
+  .od-hero {
+    background: var(--bark);
+    padding: 148px 48px 100px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .od-hero-dots {
+    position: absolute; inset: 0; opacity: .03;
+    background-image: radial-gradient(circle at 1px 1px, var(--cream) 1px, transparent 0);
+    background-size: 36px 36px; pointer-events: none;
+  }
+  .od-hero-glow {
+    position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 600px;
+    background: radial-gradient(circle, rgba(196,97,74,.14) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .od-hero-inner { position: relative; z-index: 2; max-width: 720px; margin: 0 auto; }
+
+  .od-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(196,97,74,.12); border: 1px solid rgba(196,97,74,.25);
+    border-radius: 100px; padding: 8px 22px; margin-bottom: 32px;
+    font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--terra-l);
+  }
+
+  .od-h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 6vw, 64px); font-weight: 700;
+    line-height: 1.08; letter-spacing: -2px;
+    color: var(--cream); margin-bottom: 24px;
+  }
+  .od-h1 em { font-style: italic; color: var(--terra-l); }
+
+  .od-sub {
+    font-size: clamp(16px, 2.2vw, 19px); line-height: 1.7;
+    color: rgba(237,230,216,.6); max-width: 540px; margin: 0 auto 40px;
+  }
+
+  .od-cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-terra {
+    background: var(--terra); color: var(--cream); padding: 14px 32px;
+    border-radius: 100px; font-size: 14px; font-weight: 500;
+    text-decoration: none; transition: background .2s, transform .15s;
+    display: inline-block;
+  }
+  .btn-terra:hover { background: var(--terra-l); transform: translateY(-2px); text-decoration: none; }
+  .btn-ghost {
+    background: rgba(247,242,234,.06); border: 1px solid rgba(247,242,234,.12);
+    color: rgba(237,230,216,.6); padding: 14px 28px; border-radius: 100px;
+    font-size: 14px; font-weight: 500; text-decoration: none; transition: background .2s;
+  }
+  .btn-ghost:hover { background: rgba(247,242,234,.1); text-decoration: none; }
+
+  /* Sports pill bar */
+  .od-sports {
+    display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+    margin-top: 48px;
+  }
+  .od-sport {
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 100px;
+    background: rgba(247,242,234,.04); border: 1px solid rgba(247,242,234,.06);
+    font-size: 12px; color: rgba(237,230,216,.35); font-weight: 400;
+  }
+  .od-sport span { font-size: 15px; }
+
+  /* ─── MOCK CALENDAR ─── */
+  .od-cal-section { padding: 80px 0; background: var(--cream); }
+  .od-cal-wrap {
+    max-width: 680px; margin: 0 auto; padding: 0 48px;
+  }
+  .od-cal-label {
+    font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--terra); margin-bottom: 14px; text-align: center; display: block;
+  }
+  .od-cal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3.5vw, 38px); font-weight: 600;
+    color: var(--bark); line-height: 1.2; letter-spacing: -.5px;
+    text-align: center; margin-bottom: 8px;
+  }
+  .od-cal-sub {
+    font-size: 15px; color: var(--slate); text-align: center;
+    line-height: 1.7; max-width: 420px; margin: 0 auto 36px;
+  }
+  .od-cal {
+    background: var(--white); border-radius: 12px; overflow: hidden;
+    box-shadow: 0 12px 48px rgba(61,43,31,.08); border: 1px solid var(--cream-d);
+  }
+  .od-cal-bar {
+    background: var(--cream); padding: 14px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--cream-d);
+  }
+  .od-cal-logo { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--terra); }
+  .od-cal-week { font-size: 11px; color: var(--slate); font-weight: 500; letter-spacing: .06em; }
+  .od-cal-head {
+    display: grid; grid-template-columns: 72px repeat(5,1fr); gap: 3px;
+    padding: 10px 16px 8px; background: var(--cream); border-bottom: 1px solid var(--cream-d);
+  }
+  .od-ch { text-align: center; font-size: 9px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); }
+  .od-ch.today { color: var(--terra); font-weight: 600; }
+  .od-cal-body { padding: 6px 16px 16px; }
+  .od-cr {
+    display: grid; grid-template-columns: 72px repeat(5,1fr); gap: 3px;
+    padding: 5px 0; border-top: 1px solid var(--cream-d); align-items: center;
+  }
+  .od-cr:first-child { border-top: none; }
+  .od-cn { font-size: 10px; font-weight: 500; color: var(--bark-m); display: flex; align-items: center; gap: 5px; }
+  .od-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .od-cc {
+    min-height: 30px; border-radius: 5px; font-size: 9px; font-weight: 500;
+    display: flex; align-items: center; padding: 4px 6px; line-height: 1.3;
+  }
+  .od-cc.empty { background: transparent; }
+  .cc-terra { background: var(--terra-p); color: var(--terra); }
+  .cc-sage { background: var(--sage-p); color: #4A7A4E; }
+  .cc-purple { background: #EDE0F5; color: #7B4BAE; }
+  .cc-blue { background: #DAF0FA; color: #2B7CB5; }
+  .cc-dim { color: var(--slate); font-weight: 400; font-size: 8.5px; }
+
+  /* ─── PAIN POINTS ─── */
+  .od-pain { padding: 96px 0; background: var(--white); }
+  .od-pain-inner { max-width: 1140px; margin: 0 auto; padding: 0 48px; }
+  .od-pain-head { text-align: center; margin-bottom: 56px; }
+  .od-pain-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 20px;
+  }
+  .od-pain-card {
+    background: var(--cream); border-radius: 14px; padding: 32px 28px;
+    border: 1px solid var(--cream-d);
+  }
+  .od-pain-icon { font-size: 28px; margin-bottom: 16px; }
+  .od-pain-t { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--bark); margin-bottom: 8px; line-height: 1.3; }
+  .od-pain-b { font-size: 14px; color: var(--slate); line-height: 1.7; }
+
+  /* ─── STEPS ─── */
+  .od-steps { padding: 96px 0; background: var(--cream); }
+  .od-steps-inner { max-width: 600px; margin: 0 auto; padding: 0 48px; }
+  .od-step {
+    display: flex; gap: 24px; align-items: flex-start; margin-bottom: 36px;
+  }
+  .od-step:last-child { margin-bottom: 0; }
+  .od-step-num {
+    width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+    background: var(--terra); color: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700;
+  }
+  .od-step-t { font-size: 16px; font-weight: 600; color: var(--bark); margin-bottom: 4px; }
+  .od-step-b { font-size: 14px; color: var(--slate); line-height: 1.6; }
+
+  /* ─── TESTIMONIAL ─── */
+  .od-quote { padding: 80px 0; background: var(--white); }
+  .od-quote-inner {
+    max-width: 560px; margin: 0 auto; padding: 0 48px; text-align: center;
+  }
+  .od-quote-mark { font-family: 'Playfair Display', serif; font-size: 64px; line-height: 1; color: var(--terra-p); margin-bottom: 8px; }
+  .od-quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.5vw, 24px); font-weight: 400; font-style: italic;
+    color: var(--bark); line-height: 1.6; margin-bottom: 20px;
+  }
+  .od-quote-attr { font-size: 13px; color: var(--slate); }
+
+  /* ─── FINAL CTA ─── */
+  .od-final { background: var(--terra); padding: 96px 48px; text-align: center; }
+  .od-final-emoji { font-size: 48px; margin-bottom: 20px; }
+  .od-final-t {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 44px); font-weight: 600;
+    color: var(--cream); line-height: 1.15; letter-spacing: -.5px; margin-bottom: 16px;
+  }
+  .od-final-t em { font-style: italic; }
+  .od-final-b { font-size: 15px; color: rgba(247,242,234,.65); max-width: 440px; margin: 0 auto 36px; line-height: 1.7; }
+  .od-final-fine { font-size: 12px; color: rgba(247,242,234,.3); margin-top: 20px; letter-spacing: .04em; }
+
+  /* ─── REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media(max-width:900px) {
+    .od-hero { padding: 120px 24px 72px; }
+    .od-cal-wrap { padding: 0 24px; }
+    .od-pain-inner { padding: 0 24px; }
+    .od-steps-inner { padding: 0 24px; }
+    .od-quote-inner { padding: 0 24px; }
+    .od-final { padding: 64px 24px; }
+    .od-cal-head, .od-cr { grid-template-columns: 56px repeat(5,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">flock</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/features.html">Features</a></li>
+    <li><a href="/how-it-works.html">How It Works</a></li>
+    <li><a href="https://app.flockfamily.app" class="nav-signin">Sign In</a></li>
+  </ul>
+  <button class="nav-mobile-toggle" id="menuToggle" aria-label="Menu">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <rect y="4" width="22" height="2" rx="1" fill="#3D2B1F"/>
+      <rect y="10" width="22" height="2" rx="1" fill="#3D2B1F"/>
+      <rect y="16" width="22" height="2" rx="1" fill="#3D2B1F"/>
+    </svg>
+  </button>
+</nav>
+
+<main>
+
+<!-- ─── HERO ─── -->
+<section class="od-hero">
+  <div class="od-hero-dots"></div>
+  <div class="od-hero-glow"></div>
+  <div class="od-hero-inner">
+    <div class="od-badge">&#9918; Mantua Little League &middot; Opening Day 2026</div>
+    <h1 class="od-h1">
+      Your family has<br><em>a lot going on.</em><br>We make it simple.
+    </h1>
+    <p class="od-sub">
+      Baseball just started. Soccer never stopped. Lacrosse is around the corner.
+      Flock puts every schedule on one screen so nothing falls through the cracks.
+    </p>
+    <div class="od-cta-row">
+      <a href="https://app.flockfamily.app/signup" class="btn-terra">Get Started Free &rarr;</a>
+      <a href="#how-it-works" class="btn-ghost">See How It Works</a>
+    </div>
+    <div class="od-sports">
+      <div class="od-sport"><span>&#9918;</span> Baseball</div>
+      <div class="od-sport"><span>&#9917;</span> Soccer</div>
+      <div class="od-sport"><span>&#129357;</span> Lacrosse</div>
+      <div class="od-sport"><span>&#127936;</span> Basketball</div>
+      <div class="od-sport"><span>&#127944;</span> Football</div>
+      <div class="od-sport"><span>&#127934;</span> Tennis</div>
+      <div class="od-sport"><span>&#127946;</span> Swim</div>
+      <div class="od-sport"><span>&#129340;</span> Wrestling</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MOCK CALENDAR ─── -->
+<section class="od-cal-section">
+  <div class="od-cal-wrap reveal">
+    <span class="od-cal-label">What It Looks Like</span>
+    <h2 class="od-cal-title">Every kid. Every sport. One&nbsp;glance.</h2>
+    <p class="od-cal-sub">A real week for a busy family. Three kids, four sports, dinner planned. No guesswork.</p>
+
+    <div class="od-cal">
+      <div class="od-cal-bar">
+        <div class="od-cal-logo">flock</div>
+        <div class="od-cal-week">Apr 13 &ndash; 17</div>
+      </div>
+      <div class="od-cal-head">
+        <div></div>
+        <div class="od-ch">Mon</div>
+        <div class="od-ch today">Tue</div>
+        <div class="od-ch">Wed</div>
+        <div class="od-ch">Thu</div>
+        <div class="od-ch">Fri</div>
+      </div>
+      <div class="od-cal-body">
+        <!-- Jake -->
+        <div class="od-cr">
+          <div class="od-cn"><div class="od-dot" style="background:var(--terra)"></div> Jake</div>
+          <div class="od-cc cc-terra">Baseball 5:30</div>
+          <div class="od-cc empty"></div>
+          <div class="od-cc cc-terra">Practice 4:00</div>
+          <div class="od-cc empty"></div>
+          <div class="od-cc cc-terra" style="border:1px solid var(--terra);background:rgba(196,97,74,.15)">Game 10am &#9918;</div>
+        </div>
+        <!-- Emma -->
+        <div class="od-cr">
+          <div class="od-cn"><div class="od-dot" style="background:#D64545"></div> Emma</div>
+          <div class="od-cc empty"></div>
+          <div class="od-cc cc-sage">Soccer 6:00</div>
+          <div class="od-cc cc-purple">Lacrosse 4:30</div>
+          <div class="od-cc cc-sage">Soccer 6:00</div>
+          <div class="od-cc empty"></div>
+        </div>
+        <!-- Sam -->
+        <div class="od-cr">
+          <div class="od-cn"><div class="od-dot" style="background:var(--sage)"></div> Sam</div>
+          <div class="od-cc cc-sage">T-ball 5:00</div>
+          <div class="od-cc cc-blue">Swim 3:30</div>
+          <div class="od-cc empty"></div>
+          <div class="od-cc cc-sage">T-ball 5:00</div>
+          <div class="od-cc cc-blue">Swim meet</div>
+        </div>
+        <!-- Dinner -->
+        <div class="od-cr">
+          <div class="od-cn" style="color:var(--slate)">&#127869;&#65039; Dinner</div>
+          <div class="od-cc cc-dim">Tacos</div>
+          <div class="od-cc cc-dim">Pasta night</div>
+          <div class="od-cc cc-dim">Grill out</div>
+          <div class="od-cc cc-dim">Pizza</div>
+          <div class="od-cc cc-dim">Leftovers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PAIN POINTS ─── -->
+<section class="od-pain">
+  <div class="od-pain-inner">
+    <div class="od-pain-head reveal">
+      <span class="od-cal-label">Built for the Carpool Lane</span>
+      <h2 class="od-cal-title">Flock was built by a sports family,<br>for sports families.</h2>
+    </div>
+    <div class="od-pain-grid">
+      <div class="od-pain-card reveal">
+        <div class="od-pain-icon">&#128565;</div>
+        <div class="od-pain-t">3 kids. 4 sports. 12 practices a week.</div>
+        <div class="od-pain-b">Different teams, different schedules, different fields. Flock pulls it all into one view so you can actually see the week ahead.</div>
+      </div>
+      <div class="od-pain-card reveal">
+        <div class="od-pain-icon">&#128260;</div>
+        <div class="od-pain-t">Syncs with TeamSnap, GameChanger &amp; iCal</div>
+        <div class="od-pain-b">No more bouncing between apps. Flock connects directly to your team calendars and automatically keeps everything updated.</div>
+      </div>
+      <div class="od-pain-card reveal">
+        <div class="od-pain-icon">&#128106;</div>
+        <div class="od-pain-t">One board for the whole family</div>
+        <div class="od-pain-b">See everyone's schedule in a single grid&mdash;who's where, when, and what's for dinner. Mount it on a tablet or check from your phone.</div>
+      </div>
+      <div class="od-pain-card reveal">
+        <div class="od-pain-icon">&#9889;</div>
+        <div class="od-pain-t">Set it and forget it</div>
+        <div class="od-pain-b">Add the calendar URL once and never think about it again. New games, schedule changes, and cancellations appear automatically.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIAL ─── -->
+<section class="od-quote">
+  <div class="od-quote-inner reveal">
+    <div class="od-quote-mark">&ldquo;</div>
+    <p class="od-quote-text">
+      We went from five different apps and a whiteboard on the fridge to one screen that everyone checks. Game changer.
+    </p>
+    <p class="od-quote-attr">&mdash; Sports parent, 3 kids in travel ball</p>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section class="od-steps" id="how-it-works">
+  <div class="od-steps-inner">
+    <div style="text-align:center;margin-bottom:48px" class="reveal">
+      <span class="od-cal-label">How It Works</span>
+      <h2 class="od-cal-title">Up and running in 3&nbsp;minutes</h2>
+    </div>
+    <div class="od-step reveal">
+      <div class="od-step-num">1</div>
+      <div>
+        <div class="od-step-t">Create your family</div>
+        <div class="od-step-b">Sign up free and name your flock. Add a row for each kid, parent, or whatever you need to track.</div>
+      </div>
+    </div>
+    <div class="od-step reveal">
+      <div class="od-step-num">2</div>
+      <div>
+        <div class="od-step-t">Connect your calendars</div>
+        <div class="od-step-b">Link TeamSnap, GameChanger, Google Calendar, or paste any iCal URL. Schedules sync automatically.</div>
+      </div>
+    </div>
+    <div class="od-step reveal">
+      <div class="od-step-num">3</div>
+      <div>
+        <div class="od-step-t">See everything in one place</div>
+        <div class="od-step-b">Open the app on your phone, tablet, or mount it on the wall. The whole week, at a glance. That's it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FINAL CTA ─── -->
+<section class="od-final">
+  <div class="od-final-emoji">&#9918;</div>
+  <h2 class="od-final-t">Play ball. We'll keep<br>score on <em>the schedule.</em></h2>
+  <p class="od-final-b">Free to use. Takes 3 minutes to set up. Built by a Mantua family who gets it.</p>
+  <a href="https://app.flockfamily.app/signup" class="btn-cream">Create Your Family Calendar &rarr;</a>
+  <p class="od-final-fine">No credit card &middot; No ads &middot; Just less chaos</p>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">flock</div>
+      <div class="footer-tagline">Everyone, everywhere, always.</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/features.html">Features</a></li>
+      <li><a href="/how-it-works.html">How It Works</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+      <li><a href="mailto:hello@flockfamily.app">Contact</a></li>
+    </ul>
+    <div class="footer-copy">&copy; 2026 Flock &middot; flockfamily.app</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.reveal').forEach(el => {
+    new IntersectionObserver(([e], o) => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); o.unobserve(e.target); }
+    }, { threshold: 0.08 }).observe(el);
+  });
+  document.getElementById('menuToggle').addEventListener('click', () =>
+    document.getElementById('navLinks').classList.toggle('open'));
+</script>
+</body>
+</html>
